@@ -39,6 +39,24 @@ public class PuzzleGridTest
         assertEquals(GemCellType.HEAL, puzzle.getType(new Location(1, 1)));
     }
 
+    /**
+     * Test the size method.
+     */
+    public void testSize()
+    {
+        assertEquals(3, puzzle.size());
+    }
+
+    /**
+     * Test the switchGems method.
+     */
+    public void testSwitchGems()
+    {
+        puzzle.switchGems(new Location(0, 1), new Location(1,1));
+        assertEquals(GemCellType.HEAL, puzzle.getType(new Location(0, 1)));
+        assertEquals(GemCellType.WATER, puzzle.getType(new Location(1, 1)));
+    }
+
 
     /**
      * Test Remove When it should remove
