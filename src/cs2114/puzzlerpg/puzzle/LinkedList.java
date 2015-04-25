@@ -23,6 +23,25 @@ public class LinkedList<E> implements Iterable<E>
         head = null;
     }
 
+    /**
+     * Set the value at the given position
+     * @param index The index of the node to change.
+     * @param value The value to change the node to.
+     */
+    public void set(int index, E item)
+    {
+        Node<E> currentNode = head;
+        for (int i = 0; i < index - 1; i++)
+        {
+            if (currentNode == null)
+            {
+                return;
+            }
+        }
+        Node<E> nextNode = currentNode.getNext();
+
+    }
+
 
     /**
      * Return the value at the given position.
@@ -42,7 +61,6 @@ public class LinkedList<E> implements Iterable<E>
             currentNode = currentNode.getNext();
         }
         return currentNode.data();
-
     }
 
 
@@ -225,6 +243,24 @@ public class LinkedList<E> implements Iterable<E>
             return value;
         }
 
+    }
+
+
+    /**
+     * Check if a list contains an item.
+     * @param targetItem The item to look for.
+     * @return True if the target item is found.
+     */
+    public boolean contains(E targetItem)
+    {
+        for (E item : this)
+        {
+            if (item.equals(targetItem))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

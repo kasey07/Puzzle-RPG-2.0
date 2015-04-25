@@ -114,4 +114,15 @@ public class LinkedListTest extends TestCase
         }
         assertEquals("ABC", accum);
     }
+
+    /**
+     * Test the contains method.
+     */
+    public void testContains()
+    {
+        assertFalse(list.contains("A"));
+        list.insert("B");
+        assertFalse(list.contains("A"));
+        assertTrue(list.contains("B"));
+    }
 }
