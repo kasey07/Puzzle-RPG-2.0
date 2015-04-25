@@ -14,6 +14,11 @@ public class Location
     private final int x;
     private final int y;
 
+    static public boolean isAdjacent(Location loc1, Location loc2)
+    {
+        return false; //TODO
+    }
+
     /**
      * Create a new Location with constant
      * values 'x' and 'y'.
