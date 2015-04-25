@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public class PuzzleGrid
     extends sofia.util.Observable
-    implements PuzzleGridI
 {
     private LinkedList<GemCellType>[] gemColumns;
     private Random          rand;
@@ -77,64 +76,43 @@ public class PuzzleGrid
     }
 
     /**
-     * Removes current gemCell and adjacent of similar types then calls
-     * FillSquare to replace removed gemCells
+     * Removes a cell and all adjacent cell of the same type.
      *
-     * @param location
-     *            of gemCell
-     * @return type removed
+     * @param loc The start location.
+     * @return The total number of gems removed.
      */
-    public GemCellType remove(Location location)
+    public int remove(Location loc)
     {
-        ArrayList<Location> locations = new ArrayList<Location>();
-
-        locations.add(location);
-        Location temp = location;
-        GemCellType type = this.getType(location);
-        boolean adj = true;
-        while (adj)
-        {
-            int size1 = locations.size();
-
-            locations = getAdjacent(temp, locations, type);
-            if (size1 == locations.size())
-            {
-                break;
-            }
-            for (int i = locations.size() - size1; i < locations.size(); i++)
-            {
-                temp = locations.get(i);
-                locations = getAdjacent(temp, locations, type);
-            }
-
-            for (int i = 0; i < locations.size(); i++)
-            {
-                temp = locations.get(i);
-                fillSquare(temp.getX(), temp.getY());
-            }
-        }
-        notifyObservers();
-        return type;
+        return removeHelper(loc, getType(loc), new LinkedList<Location>());
     }
 
-
-    private ArrayList<Location> getAdjacent(
-        Location location,
-        ArrayList<Location> locations,
-        GemCellType type)
+    /**
+     * Remove a cell of the given type and all adjacent cells of
+     * the same type.
+     * @param loc The location to start from
+     * @param type The type of the cell to remove
+     * @param visited A list of previously visited values.
+     * @return The amount of cells removed,
+     */
+    private int removeHelper(Location loc, GemCellType type, LinkedList<Location> visited)
     {
-        int x = location.getX();
-        int y = location.getY();
-        Location temp = location;
-        for (int i = x - 1; i <= x + 1; i++)
+        if (getType(loc) == null || visited.contains(loc))
         {
-            for (int j = x - 1; j <= x + 1; j++)
-            {
-                // add adjacent locations of same type
-            }
+            return 0;
         }
-
-        return locations;
+        else
+        {
+            int x = loc.getX();
+            int y = loc.getY();
+            visited.insert(loc);
+            int scoreValue = removeHelper(new Location(x + 1, y), type, visited)
+                + removeHelper(new Location(x - 1, y), type, visited)
+                + removeHelper(new Location(x, y + 1), type, visited)
+                + removeHelper(new Location(x, y - 1), type, visited);
+            gemColumns[x].delete(y);
+            gemColumns[x].insert(randomType());
+            return scoreValue + 1;
+        }
     }
 
     /**
