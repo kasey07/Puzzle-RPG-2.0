@@ -35,7 +35,7 @@ public class MainScreen
      * @author Kasey Johnson
      * @version Apr 25, 2015
      */
-    public class YourItemSelectedListener
+    public class ClassSelectedListener
         implements OnItemSelectedListener
     {
 
@@ -72,6 +72,7 @@ public class MainScreen
         adapter
             .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         characterClass.setAdapter(adapter);
+        characterClass.setOnItemSelectedListener(new ClassSelectedListener());
     }
 
 

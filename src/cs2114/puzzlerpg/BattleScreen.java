@@ -1,5 +1,7 @@
 package cs2114.puzzlerpg;
 
+import sofia.graphics.Color;
+import android.widget.TextView;
 import cs2114.puzzlerpg.playerclasses.Rouge;
 import cs2114.puzzlerpg.playerclasses.Mage;
 import cs2114.puzzlerpg.playerclasses.Warrior;
@@ -32,6 +34,8 @@ public class BattleScreen
     private RectangleShape   player;
     private RectangleShape   monster;
     private RPGController    ctrl;
+    private TextView         charName;
+    private TextView         charHealth;
 
 
     // ----------------------------------------------------------
@@ -43,6 +47,9 @@ public class BattleScreen
         Intent intent = getIntent();
         createRPGController(intent.getExtras().getString("name"), intent
             .getExtras().getString("class"));
+        charName.setText(ctrl.getPlayer().getName());
+        charHealth.setText(ctrl.getPlayer().getHealth() + "/"
+            + ctrl.getPlayer().getMaxHealth());
         firstClick = null;
 
         puzzle = new PuzzleGrid(GRID_SIZE);
@@ -88,18 +95,24 @@ public class BattleScreen
                         (length * (j + 1)),
                         length * (i + 1),
                         puzzle.getType(new Location(i, j)));
-
+                square.setColor(Color.black);
                 shapeView.add(square);
                 gem[i][j] = square;
 
             }
         }
         player =
+            new RectangleShape(length * 6, length * 2, (length * (6)), length
+                * (2 + 1));
+
+        player.setColor(Color.beige);
+        monster =
             new RectangleShape(
-                length * 8,
-                length * 7,
-                (length * (8 + 1)),
-                length * (7 + 1));
+                length * 6,
+                length * 6,
+                (length * (6)),
+                length * (6));
+        monster.setColor(Color.black);
         shapeView.add(player);
         shapeView.add(monster);
     }
@@ -170,7 +183,7 @@ public class BattleScreen
 
                 puzzle.switchGems(firstClick, new Location(xValue, yValue));
 
-                puzzle.remove(new Location(xValue, yValue));
+                // puzzle.remove(new Location(xValue, yValue));
                 // puzzle
                 // .remove(new Location(firstClick.getX(), firstClick.getY()));
                 firstClick = null;

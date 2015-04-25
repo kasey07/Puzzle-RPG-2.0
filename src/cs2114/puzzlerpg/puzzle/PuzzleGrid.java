@@ -16,7 +16,6 @@ public class PuzzleGrid
     implements PuzzleGridI
 {
     private LinkedList<GemCellType>[] gemColumns;
-    private Random                    rand;
 
 
     /**
@@ -27,7 +26,7 @@ public class PuzzleGrid
      */
     public PuzzleGrid(int size)
     {
-        rand = new Random();
+        gemColumns = new LinkedList[size];
         for (int i = 0; i < size; i++)
         {
             gemColumns[i] = new LinkedList<GemCellType>();
@@ -114,7 +113,7 @@ public class PuzzleGrid
             for (int i = 0; i < locations.size(); i++)
             {
                 temp = locations.get(i);
-                fillSquare(temp.getX(), temp.getY());
+                // fillSquare(temp.getX(), temp.getY());
             }
         }
         notifyObservers();
@@ -172,7 +171,9 @@ public class PuzzleGrid
 
     /**
      * Get the gem type at a location.
-     * @param loc The location of the cell to check.
+     *
+     * @param loc
+     *            The location of the cell to check.
      * @return The type of the cell at that location.
      */
     public GemCellType getType(Location loc)
