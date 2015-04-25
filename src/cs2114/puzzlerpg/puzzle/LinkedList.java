@@ -30,16 +30,19 @@ public class LinkedList<E> implements Iterable<E>
      */
     public void set(int index, E item)
     {
-        Node<E> currentNode = head;
-        for (int i = 0; i < index - 1; i++)
+        if (head == null)
         {
-            if (currentNode == null)
+            return; // Should throw an exception
+        }
+        Node<E> temp = head;
+        for (int i = 0; i < index; i++)
+        {
+            if (temp.getNext() == null)
             {
-                return;
+                return; // Should throw an exception.
             }
         }
-        Node<E> nextNode = currentNode.getNext();
-
+        temp.setData(item);
     }
 
 
@@ -239,6 +242,14 @@ public class LinkedList<E> implements Iterable<E>
         public E data()
         {
             return value;
+        }
+
+        /**
+         * Set the datum in the node.
+         */
+        public void setData(E newValue)
+        {
+            value = newValue;
         }
 
     }
