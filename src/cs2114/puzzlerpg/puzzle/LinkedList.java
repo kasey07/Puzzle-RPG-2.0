@@ -1,5 +1,6 @@
 package cs2114.puzzlerpg.puzzle;
 
+import java.util.NoSuchElementException;
 import java.util.Iterator;
 
 /**
@@ -23,11 +24,34 @@ public class LinkedList<E> implements Iterable<E>
         head = null;
     }
 
+    /**
+     * Set the value at the given position
+     * @param index The index of the node to change.
+     * @param item The value to change the node to.
+     */
+    public void set(int index, E item)
+    {
+        if (head == null)
+        {
+            return; // Should throw an exception
+        }
+        Node<E> temp = head;
+        for (int i = 0; i < index; i++)
+        {
+            if (temp.getNext() == null)
+            {
+                return; // Should throw an exception.
+            }
+        }
+        temp.setData(item);
+    }
+
 
     /**
      * Return the value at the given position.
      *
      * @param index The given position. @return The value at that position.
+     * @return The item at the index or null if the index does not exist.
      */
     public E get(int index)
     {
@@ -37,12 +61,11 @@ public class LinkedList<E> implements Iterable<E>
         {
             if (head == null)
             {
-                return null;
+                return null; //TODO Exceptions
             }
             currentNode = currentNode.getNext();
         }
         return currentNode.data();
-
     }
 
 
@@ -98,21 +121,6 @@ public class LinkedList<E> implements Iterable<E>
         return size() == 0;
     }
 
-
-    /**
-     * Makes this the new element at the given index. The current element at
-     * that index and all elements after it are moved to accommodate the new
-     * value.
-     *
-     * @param newItem The new item.
-     * @param index The index to insert the new value before.
-     */
-    public void insert(E newItem, int index)
-    {
-        // TODO
-    }
-
-
     /**
      * Insert a new value to the front of the list.
      *
@@ -121,7 +129,16 @@ public class LinkedList<E> implements Iterable<E>
      */
     public void insert(E newItem)
     {
-        insert(newItem, 0);
+        if (head == null)
+        {
+            head = new Node<E>(newItem);
+        }
+        else
+        {
+            Node<E> temp = head;
+            head = new Node<E>(newItem);
+            head.setNext(temp);
+        }
     }
 
 
@@ -167,7 +184,41 @@ public class LinkedList<E> implements Iterable<E>
      */
     public Iterator<E> iterator()
     {
-        return null;
+        return new LinkedListIterator();
+    }
+
+    private class LinkedListIterator implements Iterator<E>
+    {
+        Node<E> current;
+        int index;
+
+        public LinkedListIterator()
+        {
+            current = head;
+            index = 0;
+        }
+        public boolean hasNext()
+        {
+            return current.getNext() != null;
+        }
+        public E next()
+        {
+            if (hasNext())
+            {
+                E temp = current.data();
+                current = current.getNext();
+                index++;
+                return temp;
+            }
+            else
+            {
+                throw new NoSuchElementException("There are no elements left.");
+            }
+        }
+        public void remove()
+        {
+            delete(index);
+        }
     }
 
 
@@ -225,6 +276,33 @@ public class LinkedList<E> implements Iterable<E>
             return value;
         }
 
+        /**
+         * Set the datum in the node.
+         * @param newValue The new value for the datum.
+         */
+        public void setData(E newValue)
+        {
+            value = newValue;
+        }
+
+    }
+
+
+    /**
+     * Check if a list contains an item.
+     * @param targetItem The item to look for.
+     * @return True if the target item is found.
+     */
+    public boolean contains(E targetItem)
+    {
+        for (E item : this)
+        {
+            if (item.equals(targetItem))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

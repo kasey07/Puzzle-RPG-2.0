@@ -172,10 +172,8 @@ public class PuzzleGrid
 
     /**
      * Get the gem type at a location.
-     *
-     * @param loc
-     *            The location of the cell to check.
-     * @param return The type of the cell at that location.
+     * @param loc The location of the cell to check.
+     * @return The type of the cell at that location.
      */
     public GemCellType getType(Location loc)
     {
