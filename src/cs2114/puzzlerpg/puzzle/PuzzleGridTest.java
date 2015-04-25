@@ -18,14 +18,18 @@ public class PuzzleGridTest
     public void setUp()
     {
         puzzle = new PuzzleGrid(3);
-        puzzle.setType(new Location(0, 0), GemCellType.HEAL);
+        puzzle.setType(new Location(0, 0), GemCellType.FIRE);
         puzzle.setType(new Location(1, 0), GemCellType.FIRE);
+        puzzle.setType(new Location(2, 0), GemCellType.FIRE);
+
         puzzle.setType(new Location(0, 1), GemCellType.WATER);
-        puzzle.setType(new Location(1, 1), GemCellType.EARTH);
+        puzzle.setType(new Location(1, 1), GemCellType.HEAL);
+        puzzle.setType(new Location(2, 1), GemCellType.WATER);
+
+        puzzle.setType(new Location(0, 2), GemCellType.WATER);
+        puzzle.setType(new Location(1, 2), GemCellType.WATER);
+        puzzle.setType(new Location(2, 2), GemCellType.WATER);
     }
-
-
-    // ----------------------------------------------------------
 
     /**
      * Test Get Type Method
@@ -41,11 +45,10 @@ public class PuzzleGridTest
      */
     public void testRemove()
     {
-        puzzle.setType(new Location(0, 1), GemCellType.HEAL);
-        puzzle.setType(new Location(0, 2), GemCellType.HEAL);
-
-        assertEquals(GemCellType.HEAL, puzzle.remove(new Location(0, 0)));
-
+        puzzle.remove(new Location(2, 2));
+        assertEquals(GemCellType.FIRE, puzzle.getType(new Location(0, 2)));
+        assertEquals(GemCellType.HEAL, puzzle.getType(new Location(1, 2)));
+        assertEquals(GemCellType.FIRE, puzzle.getType(new Location(2, 2)));
     }
 
 }
