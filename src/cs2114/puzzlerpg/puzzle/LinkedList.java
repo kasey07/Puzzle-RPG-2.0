@@ -27,7 +27,7 @@ public class LinkedList<E> implements Iterable<E>
     /**
      * Return the value at the given position.
      *
-     * @index The given position. @return The value at that position.
+     * @param index The given position. @return The value at that position.
      */
     public E get(int index)
     {
@@ -104,8 +104,8 @@ public class LinkedList<E> implements Iterable<E>
      * that index and all elements after it are moved to accommodate the new
      * value.
      *
-     * @newItem The new item.
-     * @index The index to insert the new value before.
+     * @param newItem The new item.
+     * @param index The index to insert the new value before.
      */
     public void insert(E newItem, int index)
     {
@@ -182,7 +182,9 @@ public class LinkedList<E> implements Iterable<E>
 
         /**
          * Create a new node linked to null.
+         * @param value The value inside the node.
          */
+        @SuppressWarnings("unused")
         public Node(E value)
         {
             this.value = value;
