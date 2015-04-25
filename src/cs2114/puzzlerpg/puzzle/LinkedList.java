@@ -135,11 +135,8 @@ public class LinkedList<E> implements Iterable<E>
         else
         {
             Node<E> temp = head;
-            while (temp.getNext() != null)
-            {
-                temp = temp.getNext();
-            }
-            temp.setNext(new Node<E>(newItem));
+            head = new Node<E>(newItem);
+            head.setNext(temp);
         }
     }
 
