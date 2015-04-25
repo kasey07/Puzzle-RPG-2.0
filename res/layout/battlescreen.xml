@@ -20,15 +20,6 @@
         android:text="name" />
 
     <TextView
-        android:id="@+id/charHealth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/charName"
-        android:layout_alignLeft="@+id/charName"
-        android:layout_marginBottom="32dp"
-        android:text="health" />
-
-    <TextView
         android:id="@+id/monsterTurns"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,5 +27,14 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="27dp"
         android:text="5" />
+
+    <TextView
+        android:id="@+id/charHealth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/charName"
+        android:layout_alignLeft="@+id/charName"
+        android:layout_marginBottom="102dp"
+        android:text="health" />
 
 </RelativeLayout>
