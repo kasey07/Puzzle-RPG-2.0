@@ -1,5 +1,6 @@
 package cs2114.puzzlerpg.puzzle;
 
+import java.util.NoSuchElementException;
 import java.util.Iterator;
 
 /**
@@ -183,7 +184,41 @@ public class LinkedList<E> implements Iterable<E>
      */
     public Iterator<E> iterator()
     {
-        return null;
+        return new LinkedListIterator();
+    }
+
+    private class LinkedListIterator implements Iterator<E>
+    {
+        Node<E> current;
+        int index;
+
+        public LinkedListIterator()
+        {
+            current = head;
+            index = 0;
+        }
+        public boolean hasNext()
+        {
+            return current.getNext() != null;
+        }
+        public E next()
+        {
+            if (hasNext())
+            {
+                E temp = current.data();
+                current = current.getNext();
+                index++;
+                return temp;
+            }
+            else
+            {
+                throw new NoSuchElementException("There are no elements left.");
+            }
+        }
+        public void remove()
+        {
+            delete(index);
+        }
     }
 
 
