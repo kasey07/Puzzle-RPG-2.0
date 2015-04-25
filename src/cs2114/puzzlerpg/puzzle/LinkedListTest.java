@@ -3,14 +3,16 @@ package cs2114.puzzlerpg.puzzle;
 import student.TestCase;
 
 /**
- *  A test class for the LinkedList<E> class.
+ * A test class for the LinkedList<E> class.
  *
- *  @author andrew
- *  @version Apr 8, 2015
+ * @author andrew
+ * @version Apr 8, 2015
  */
-public class LinkedListTest extends TestCase
+public class LinkedListTest
+    extends TestCase
 {
     private LinkedList<String> list;
+
 
     /**
      * Create a new LinkedListTest object.
@@ -20,10 +22,12 @@ public class LinkedListTest extends TestCase
         // Empty constructor. Not even sure I need this. (Cargo Cult! :D)
     }
 
+
     public void setUp()
     {
         list = new LinkedList<String>();
     }
+
 
     /**
      * Test the get method.
@@ -33,10 +37,11 @@ public class LinkedListTest extends TestCase
         list.insert("A");
         list.insert("B");
         list.insert("C");
-        assertEquals("A", list.get(0));
+        assertEquals("A", list.get(2));
         assertEquals("B", list.get(1));
-        assertEquals("C", list.get(2));
+        assertEquals("C", list.get(0));
     }
+
 
     /**
      * Test the first and last methods.
@@ -46,9 +51,10 @@ public class LinkedListTest extends TestCase
         list.insert("A");
         list.insert("B");
         list.insert("C");
-        assertEquals("A", list.first());
-        assertEquals("C", list.last());
+        assertEquals("C", list.first());
+        assertEquals("A", list.last());
     }
+
 
     /**
      * Test the isEmpty method.
@@ -59,6 +65,7 @@ public class LinkedListTest extends TestCase
         list.insert("A");
         assertFalse(list.isEmpty());
     }
+
 
     /**
      * Test the single argument insert method.
@@ -71,6 +78,7 @@ public class LinkedListTest extends TestCase
         assertEquals("hi", list.first());
     }
 
+
     /**
      * Test the delete method.
      */
@@ -81,9 +89,10 @@ public class LinkedListTest extends TestCase
         list.insert("C");
         list.delete(1);
         assertEquals(2, list.size());
-        assertEquals("hi", list.first());
-        assertEquals("bye", list.last());
+        assertEquals("C", list.first());
+        assertEquals("A", list.last());
     }
+
 
     /**
      * Test the iterator.
@@ -94,12 +103,13 @@ public class LinkedListTest extends TestCase
         list.insert("B");
         list.insert("C");
         String accum = "";
-        for(String item : list)
+        for (String item : list)
         {
             accum += item;
         }
-        assertEquals("ABC", accum);
+        assertEquals("CBA", accum);
     }
+
 
     /**
      * Test the contains method.

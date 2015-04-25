@@ -13,9 +13,10 @@ import java.util.ArrayList;
  */
 public class PuzzleGrid
     extends sofia.util.Observable
+    implements PuzzleGridI
 {
     private LinkedList<GemCellType>[] gemColumns;
-    private Random          rand;
+
 
     /**
      * Create a new PuzzleGrid object.
@@ -25,7 +26,7 @@ public class PuzzleGrid
      */
     public PuzzleGrid(int size)
     {
-        rand = new Random();
+        gemColumns = new LinkedList[size];
         for (int i = 0; i < size; i++)
         {
             gemColumns[i] = new LinkedList<GemCellType>();
@@ -36,9 +37,9 @@ public class PuzzleGrid
         }
     }
 
+
     /**
-     * Replaces all gems on the board with
-     * new random values.
+     * Replaces all gems on the board with new random values.
      */
     public void resetBoard()
     {
@@ -51,72 +52,98 @@ public class PuzzleGrid
         }
     }
 
+
     /**
      * Randomly Selects a Cell type to fill in layout
      */
     private GemCellType randomType()
     {
-        int nextValue = rand.nextInt(4);
-        switch (nextValue)
+        double nextValue = Math.random();
+        if (nextValue < .30)
         {
-            case 0:
-                return GemCellType.EARTH;
-            case 1:
-                return GemCellType.FIRE;
-            case 2:
-                return GemCellType.WATER;
-            case 3:
-                return GemCellType.HEAL;
-            default:
-             // This should never happen, but I don't
-             // care enough to use exceptions.
-                return null;
+            return GemCellType.EARTH;
         }
-
-    }
-
-    /**
-     * Removes a cell and all adjacent cell of the same type.
-     *
-     * @param loc The start location.
-     * @return The total number of gems removed.
-     */
-    public int remove(Location loc)
-    {
-        return removeHelper(loc, getType(loc), new LinkedList<Location>());
-    }
-
-    /**
-     * Remove a cell of the given type and all adjacent cells of
-     * the same type.
-     * @param loc The location to start from
-     * @param type The type of the cell to remove
-     * @param visited A list of previously visited values.
-     * @return The amount of cells removed,
-     */
-    private int removeHelper(Location loc, GemCellType type, LinkedList<Location> visited)
-    {
-        if (getType(loc) == null || visited.contains(loc))
+        else if (nextValue < .60)
         {
-            return 0;
+            return GemCellType.FIRE;
+        }
+        else if (nextValue < .90)
+        {
+            return GemCellType.WATER;
         }
         else
         {
-            int x = loc.getX();
-            int y = loc.getY();
-            visited.insert(loc);
-            int scoreValue = removeHelper(new Location(x + 1, y), type, visited)
-                + removeHelper(new Location(x - 1, y), type, visited)
-                + removeHelper(new Location(x, y + 1), type, visited)
-                + removeHelper(new Location(x, y - 1), type, visited);
-            gemColumns[x].delete(y);
-            gemColumns[x].insert(randomType());
-            return scoreValue + 1;
+            return GemCellType.HEAL;
         }
+
     }
+
+
+    /**
+     * Removes current gemCell and adjacent of similar types then calls
+     * FillSquare to replace removed gemCells
+     *
+     * @param location
+     *            of gemCell
+     * @return type removed
+     */
+    public GemCellType remove(Location location)
+    {
+        ArrayList<Location> locations = new ArrayList<Location>();
+
+        locations.add(location);
+        Location temp = location;
+        GemCellType type = this.getType(location);
+        boolean adj = true;
+        while (adj)
+        {
+            int size1 = locations.size();
+
+            locations = getAdjacent(temp, locations, type);
+            if (size1 == locations.size())
+            {
+                break;
+            }
+            for (int i = locations.size() - size1; i < locations.size(); i++)
+            {
+                temp = locations.get(i);
+                locations = getAdjacent(temp, locations, type);
+            }
+
+            for (int i = 0; i < locations.size(); i++)
+            {
+                temp = locations.get(i);
+                // fillSquare(temp.getX(), temp.getY());
+            }
+        }
+        notifyObservers();
+        return type;
+    }
+
+
+    private ArrayList<Location> getAdjacent(
+        Location location,
+        ArrayList<Location> locations,
+        GemCellType type)
+    {
+        int x = location.getX();
+        int y = location.getY();
+        Location temp = location;
+        for (int i = x - 1; i <= x + 1; i++)
+        {
+            for (int j = x - 1; j <= x + 1; j++)
+            {
+                // add adjacent locations of same type
+            }
+        }
+
+        return locations;
+    }
+
 
     /**
      * Get the size of the gem grid.
+     *
      * @return The width and height of the gem grid.
      */
     public int size()
@@ -124,10 +151,14 @@ public class PuzzleGrid
         return gemColumns.length;
     }
 
+
     /**
      * Switches the values in two cells.
-     * @param loc1 The first gem's location.
-     * @param loc2 The second gem's location.
+     *
+     * @param loc1
+     *            The first gem's location.
+     * @param loc2
+     *            The second gem's location.
      */
     public void switchGems(Location loc1, Location loc2)
     {
@@ -140,7 +171,9 @@ public class PuzzleGrid
 
     /**
      * Get the gem type at a location.
-     * @param loc The location of the cell to check.
+     *
+     * @param loc
+     *            The location of the cell to check.
      * @return The type of the cell at that location.
      */
     public GemCellType getType(Location loc)
@@ -151,8 +184,11 @@ public class PuzzleGrid
 
     /**
      * Change the gem type at a location.
-     * @param loc The location to be updated.
-     * @param gemType The new gem type value.
+     *
+     * @param loc
+     *            The location to be updated.
+     * @param gemType
+     *            The new gem type value.
      */
     public void setType(Location loc, GemCellType gemType)
     {
@@ -162,6 +198,7 @@ public class PuzzleGrid
 
     /**
      * Unlimited moves for regular mode
+     *
      * @return always true for regular mode
      */
     public boolean movesLeft()

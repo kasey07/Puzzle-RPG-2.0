@@ -8,67 +8,33 @@
     <sofia.graphics.ShapeView
         android:id="@+id/shapeView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/infoLabel"
-        android:layout_below="@+id/ButtonLayout" />
+        android:layout_height="match_parent" />
 
-<LinearLayout android:id="@+id/ButtonLayout" android:layout_height="wrap_content" android:layout_width="match_parent">
-   <ToggleButton
-        android:id="@+id/drawWalls"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_weight="1"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/charName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOn="Draw On" 
-        android:textOff="Draw Off"/>
-    <ToggleButton
-        android:id="@+id/eraseWalls"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_weight="1"
-        android:layout_width="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="22dp"
+        android:text="name" />
+
+    <TextView
+        android:id="@+id/charHealth"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:textOn="Erase On" 
-        android:textOff="Erase Off"/>
-    
-    <ToggleButton
-        android:id="@+id/setGoal"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_weight="1"
-        android:layout_width="0dp"
+        android:layout_above="@+id/charName"
+        android:layout_alignLeft="@+id/charName"
+        android:layout_marginBottom="32dp"
+        android:text="health" />
+
+    <TextView
+        android:id="@+id/monsterTurns"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:textOn="Goal On"
-        android:textOff="Goal Off" />
-
-    <ToggleButton
-        android:id="@+id/setStart"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:textOn="Start On"
-        android:textOff="Start Off" />
-    
-     <Button
-         android:id="@+id/solve"
-         style="?android:attr/buttonStyleSmall"
-         android:layout_width="0dp"
-         android:layout_height="wrap_content"
-         android:layout_alignParentTop="true"
-         android:layout_weight="1"
-         android:text="Solve Maze" />
-
-</LinearLayout>
-
-<TextView
-    android:id="@+id/infoLabel"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="true"
-    android:text="TextView" />
+        android:layout_marginRight="27dp"
+        android:text="5" />
 
 </RelativeLayout>

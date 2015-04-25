@@ -59,7 +59,6 @@ public class Monsters
 
     }
 
-
     // ----------------------------------------------------------
     /**
      * Gets the health of the monster

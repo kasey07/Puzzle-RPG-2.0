@@ -11,7 +11,8 @@ import java.util.Iterator;
  * @author Andrew Dudash
  * @version Apr 8, 2015
  */
-public class LinkedList<E> implements Iterable<E>
+public class LinkedList<E>
+    implements Iterable<E>
 {
     private Node<E> head;
 
@@ -24,10 +25,14 @@ public class LinkedList<E> implements Iterable<E>
         head = null;
     }
 
+
     /**
      * Set the value at the given position
-     * @param index The index of the node to change.
-     * @param item The value to change the node to.
+     *
+     * @param index
+     *            The index of the node to change.
+     * @param item
+     *            The value to change the node to.
      */
     public void set(int index, E item)
     {
@@ -50,7 +55,8 @@ public class LinkedList<E> implements Iterable<E>
     /**
      * Return the value at the given position.
      *
-     * @param index The given position. @return The value at that position.
+     * @param index
+     *            The given position. @return The value at that position.
      * @return The item at the index or null if the index does not exist.
      */
     public E get(int index)
@@ -61,7 +67,7 @@ public class LinkedList<E> implements Iterable<E>
         {
             if (head == null)
             {
-                return null; //TODO Exceptions
+                return null; // TODO Exceptions
             }
             currentNode = currentNode.getNext();
         }
@@ -120,6 +126,7 @@ public class LinkedList<E> implements Iterable<E>
     {
         return size() == 0;
     }
+
 
     /**
      * Insert a new value to the front of the list.
@@ -187,20 +194,27 @@ public class LinkedList<E> implements Iterable<E>
         return new LinkedListIterator();
     }
 
-    private class LinkedListIterator implements Iterator<E>
+
+    private class LinkedListIterator
+        implements Iterator<E>
     {
         Node<E> current;
-        int index;
+        int     index;
+
 
         public LinkedListIterator()
         {
             current = head;
             index = 0;
         }
+
+
         public boolean hasNext()
         {
-            return current.getNext() != null;
+            return current != null;
         }
+
+
         public E next()
         {
             if (hasNext())
@@ -215,6 +229,8 @@ public class LinkedList<E> implements Iterable<E>
                 throw new NoSuchElementException("There are no elements left.");
             }
         }
+
+
         public void remove()
         {
             delete(index);
@@ -233,7 +249,9 @@ public class LinkedList<E> implements Iterable<E>
 
         /**
          * Create a new node linked to null.
-         * @param value The value inside the node.
+         *
+         * @param value
+         *            The value inside the node.
          */
         @SuppressWarnings("unused")
         public Node(E value)
@@ -276,9 +294,12 @@ public class LinkedList<E> implements Iterable<E>
             return value;
         }
 
+
         /**
          * Set the datum in the node.
-         * @param newValue The new value for the datum.
+         *
+         * @param newValue
+         *            The new value for the datum.
          */
         public void setData(E newValue)
         {
@@ -290,7 +311,9 @@ public class LinkedList<E> implements Iterable<E>
 
     /**
      * Check if a list contains an item.
-     * @param targetItem The item to look for.
+     *
+     * @param targetItem
+     *            The item to look for.
      * @return True if the target item is found.
      */
     public boolean contains(E targetItem)

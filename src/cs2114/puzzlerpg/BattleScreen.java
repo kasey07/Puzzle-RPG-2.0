@@ -1,11 +1,17 @@
 package cs2114.puzzlerpg;
 
+import sofia.graphics.Color;
+import android.widget.TextView;
+import cs2114.puzzlerpg.playerclasses.Rouge;
+import cs2114.puzzlerpg.playerclasses.Mage;
+import cs2114.puzzlerpg.playerclasses.Warrior;
+import android.content.Intent;
+import sofia.graphics.RectangleShape;
 import cs2114.puzzlerpg.puzzle.GemShape;
 import cs2114.puzzlerpg.puzzle.Location;
 import cs2114.puzzlerpg.puzzle.PuzzleGrid;
 import sofia.app.ShapeScreen;
 import sofia.graphics.ShapeView;
-
 
 // -------------------------------------------------------------------------
 /**
@@ -25,6 +31,11 @@ public class BattleScreen
     private GemShape[][]     gem;
     private Location         firstClick;
     private static final int GRID_SIZE = 4;
+    private RectangleShape   player;
+    private RectangleShape   monster;
+    private RPGController    ctrl;
+    private TextView         charName;
+    private TextView         charHealth;
 
 
     // ----------------------------------------------------------
@@ -33,6 +44,12 @@ public class BattleScreen
      */
     public void initialize()
     {
+        Intent intent = getIntent();
+        createRPGController(intent.getExtras().getString("name"), intent
+            .getExtras().getString("class"));
+        charName.setText(ctrl.getPlayer().getName());
+        charHealth.setText(ctrl.getPlayer().getHealth() + "/"
+            + ctrl.getPlayer().getMaxHealth());
         firstClick = null;
 
         puzzle = new PuzzleGrid(GRID_SIZE);
@@ -42,6 +59,24 @@ public class BattleScreen
         this.gem = new GemShape[GRID_SIZE][GRID_SIZE];
         setupScreen();
 
+    }
+
+
+    private void createRPGController(String name, String classType)
+    {
+        if (classType.equals("Warrior"))
+        {
+            this.ctrl = new RPGController(new Warrior(name));
+
+        }
+        else if (classType.equals("Mage"))
+        {
+            this.ctrl = new RPGController(new Mage(name));
+        }
+        else
+        {
+            this.ctrl = new RPGController(new Rouge(name));
+        }
     }
 
 
@@ -60,13 +95,26 @@ public class BattleScreen
                         (length * (j + 1)),
                         length * (i + 1),
                         puzzle.getType(new Location(i, j)));
-
+                square.setColor(Color.black);
                 shapeView.add(square);
                 gem[i][j] = square;
 
             }
         }
+        player =
+            new RectangleShape(length * 6, length * 2, (length * (6)), length
+                * (2 + 1));
 
+        player.setColor(Color.beige);
+        monster =
+            new RectangleShape(
+                length * 6,
+                length * 6,
+                (length * (6)),
+                length * (6));
+        monster.setColor(Color.black);
+        shapeView.add(player);
+        shapeView.add(monster);
     }
 
 
@@ -135,7 +183,7 @@ public class BattleScreen
 
                 puzzle.switchGems(firstClick, new Location(xValue, yValue));
 
-                puzzle.remove(new Location(xValue, yValue));
+                // puzzle.remove(new Location(xValue, yValue));
                 // puzzle
                 // .remove(new Location(firstClick.getX(), firstClick.getY()));
                 firstClick = null;

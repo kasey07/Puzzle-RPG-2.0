@@ -15,6 +15,7 @@ public abstract class Player
     private int    attack;
     private int    turns;
     private int    counter;
+    private int    maxHealth;
 
 
     // ----------------------------------------------------------
@@ -39,6 +40,7 @@ public abstract class Player
         this.name = name;
         this.attack = attack;
         this.turns = turns;
+        this.maxHealth = health;
 
     }
 
@@ -52,6 +54,58 @@ public abstract class Player
     public int getHealth()
     {
         return health;
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Set Health of Player after damage
+     *
+     * @param damageTaken
+     *            damage taken by player
+     */
+    public void reduceHealth(int damageTaken)
+    {
+
+        if (health - damageTaken < 0)
+        {
+            this.health = 0;
+        }
+        else
+        {
+            this.health -= damageTaken;
+        }
+    }
+
+
+    /**
+     * Set Health of Player after damage
+     *
+     * @param heal
+     */
+    public void addHealth(int heal)
+    {
+        if (this.health + heal > maxHealth)
+        {
+            this.health = maxHealth;
+        }
+        else
+        {
+            this.health += heal;
+        }
+
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Get Max Health of Player
+     *
+     * @return Max health of player
+     */
+    public int getMaxHealth()
+    {
+        return maxHealth;
     }
 
 
