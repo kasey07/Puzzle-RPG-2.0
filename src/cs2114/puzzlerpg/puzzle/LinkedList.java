@@ -246,6 +246,7 @@ public class LinkedList<E> implements Iterable<E>
 
         /**
          * Set the datum in the node.
+         * @param newValue The new value for the datum.
          */
         public void setData(E newValue)
         {
