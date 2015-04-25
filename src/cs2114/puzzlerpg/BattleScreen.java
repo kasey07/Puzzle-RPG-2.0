@@ -174,8 +174,8 @@ public class BattleScreen
 
         if (tile != null)
         {
-            int yValue = getValue(x);
-            int xValue = getValue(y);
+            int yValue = getValue(y);
+            int xValue = getValue(x);
             if (firstClick == null)
             {
                 firstClick = new Location(xValue, yValue);

@@ -15,7 +15,8 @@ public class PuzzleGrid
     extends sofia.util.Observable
 {
     private LinkedList<GemCellType>[] gemColumns;
-    private Random          rand;
+    private Random                    rand;
+
 
     /**
      * Create a new PuzzleGrid object.
@@ -26,6 +27,7 @@ public class PuzzleGrid
     public PuzzleGrid(int size)
     {
         rand = new Random();
+        gemColumns = new LinkedList[size];
         for (int i = 0; i < size; i++)
         {
             gemColumns[i] = new LinkedList<GemCellType>();
@@ -36,9 +38,9 @@ public class PuzzleGrid
         }
     }
 
+
     /**
-     * Replaces all gems on the board with
-     * new random values.
+     * Replaces all gems on the board with new random values.
      */
     public void resetBoard()
     {
@@ -50,6 +52,7 @@ public class PuzzleGrid
             }
         }
     }
+
 
     /**
      * Randomly Selects a Cell type to fill in layout
@@ -68,17 +71,19 @@ public class PuzzleGrid
             case 3:
                 return GemCellType.HEAL;
             default:
-             // This should never happen, but I don't
-             // care enough to use exceptions.
+                // This should never happen, but I don't
+                // care enough to use exceptions.
                 return null;
         }
 
     }
 
+
     /**
      * Removes a cell and all adjacent cell of the same type.
      *
-     * @param loc The start location.
+     * @param loc
+     *            The start location.
      * @return The total number of gems removed.
      */
     public int remove(Location loc)
@@ -86,15 +91,22 @@ public class PuzzleGrid
         return removeHelper(loc, getType(loc), new LinkedList<Location>());
     }
 
+
     /**
-     * Remove a cell of the given type and all adjacent cells of
-     * the same type.
-     * @param loc The location to start from
-     * @param type The type of the cell to remove
-     * @param visited A list of previously visited values.
+     * Remove a cell of the given type and all adjacent cells of the same type.
+     *
+     * @param loc
+     *            The location to start from
+     * @param type
+     *            The type of the cell to remove
+     * @param visited
+     *            A list of previously visited values.
      * @return The amount of cells removed,
      */
-    private int removeHelper(Location loc, GemCellType type, LinkedList<Location> visited)
+    private int removeHelper(
+        Location loc,
+        GemCellType type,
+        LinkedList<Location> visited)
     {
         if (getType(loc) == null || visited.contains(loc))
         {
@@ -105,18 +117,21 @@ public class PuzzleGrid
             int x = loc.getX();
             int y = loc.getY();
             visited.insert(loc);
-            int scoreValue = removeHelper(new Location(x + 1, y), type, visited)
-                + removeHelper(new Location(x - 1, y), type, visited)
-                + removeHelper(new Location(x, y + 1), type, visited)
-                + removeHelper(new Location(x, y - 1), type, visited);
+            int scoreValue =
+                removeHelper(new Location(x + 1, y), type, visited)
+                    + removeHelper(new Location(x - 1, y), type, visited)
+                    + removeHelper(new Location(x, y + 1), type, visited)
+                    + removeHelper(new Location(x, y - 1), type, visited);
             gemColumns[x].delete(y);
             gemColumns[x].insert(randomType());
             return scoreValue + 1;
         }
     }
 
+
     /**
      * Get the size of the gem grid.
+     *
      * @return The width and height of the gem grid.
      */
     public int size()
@@ -124,10 +139,14 @@ public class PuzzleGrid
         return gemColumns.length;
     }
 
+
     /**
      * Switches the values in two cells.
-     * @param loc1 The first gem's location.
-     * @param loc2 The second gem's location.
+     *
+     * @param loc1
+     *            The first gem's location.
+     * @param loc2
+     *            The second gem's location.
      */
     public void switchGems(Location loc1, Location loc2)
     {
@@ -140,7 +159,9 @@ public class PuzzleGrid
 
     /**
      * Get the gem type at a location.
-     * @param loc The location of the cell to check.
+     *
+     * @param loc
+     *            The location of the cell to check.
      * @return The type of the cell at that location.
      */
     public GemCellType getType(Location loc)
@@ -151,8 +172,11 @@ public class PuzzleGrid
 
     /**
      * Change the gem type at a location.
-     * @param loc The location to be updated.
-     * @param gemType The new gem type value.
+     *
+     * @param loc
+     *            The location to be updated.
+     * @param gemType
+     *            The new gem type value.
      */
     public void setType(Location loc, GemCellType gemType)
     {
@@ -162,6 +186,7 @@ public class PuzzleGrid
 
     /**
      * Unlimited moves for regular mode
+     *
      * @return always true for regular mode
      */
     public boolean movesLeft()
