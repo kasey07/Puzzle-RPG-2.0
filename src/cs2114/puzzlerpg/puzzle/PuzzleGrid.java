@@ -16,7 +16,8 @@ public class PuzzleGrid
     implements PuzzleGridI
 {
     private LinkedList<GemCellType>[] gemColumns;
-    private Random          rand;
+    private Random                    rand;
+
 
     /**
      * Create a new PuzzleGrid object.
@@ -37,9 +38,9 @@ public class PuzzleGrid
         }
     }
 
+
     /**
-     * Replaces all gems on the board with
-     * new random values.
+     * Replaces all gems on the board with new random values.
      */
     public void resetBoard()
     {
@@ -52,29 +53,32 @@ public class PuzzleGrid
         }
     }
 
+
     /**
      * Randomly Selects a Cell type to fill in layout
      */
     private GemCellType randomType()
     {
-        int nextValue = rand.nextInt(4);
-        switch (nextValue)
+        double nextValue = Math.random();
+        if (nextValue < .30)
         {
-            case 0:
-                return GemCellType.EARTH;
-            case 1:
-                return GemCellType.FIRE;
-            case 2:
-                return GemCellType.WATER;
-            case 3:
-                return GemCellType.HEAL;
-            default:
-             // This should never happen, but I don't
-             // care enough to use exceptions.
-                return null;
+            return GemCellType.EARTH;
+        }
+        else if (nextValue < .60)
+        {
+            return GemCellType.FIRE;
+        }
+        else if (nextValue < .90)
+        {
+            return GemCellType.WATER;
+        }
+        else
+        {
+            return GemCellType.HEAL;
         }
 
     }
+
 
     /**
      * Removes current gemCell and adjacent of similar types then calls
@@ -137,8 +141,10 @@ public class PuzzleGrid
         return locations;
     }
 
+
     /**
      * Get the size of the gem grid.
+     *
      * @return The width and height of the gem grid.
      */
     public int size()
@@ -146,10 +152,14 @@ public class PuzzleGrid
         return gemColumns.length;
     }
 
+
     /**
      * Switches the values in two cells.
-     * @param loc1 The first gem's location.
-     * @param loc2 The second gem's location.
+     *
+     * @param loc1
+     *            The first gem's location.
+     * @param loc2
+     *            The second gem's location.
      */
     public void switchGems(Location loc1, Location loc2)
     {
@@ -162,7 +172,9 @@ public class PuzzleGrid
 
     /**
      * Get the gem type at a location.
-     * @param loc The location of the cell to check.
+     *
+     * @param loc
+     *            The location of the cell to check.
      * @param return The type of the cell at that location.
      */
     public GemCellType getType(Location loc)
@@ -173,8 +185,11 @@ public class PuzzleGrid
 
     /**
      * Change the gem type at a location.
-     * @param loc The location to be updated.
-     * @param gemType The new gem type value.
+     *
+     * @param loc
+     *            The location to be updated.
+     * @param gemType
+     *            The new gem type value.
      */
     public void setType(Location loc, GemCellType gemType)
     {
@@ -184,6 +199,7 @@ public class PuzzleGrid
 
     /**
      * Unlimited moves for regular mode
+     *
      * @return always true for regular mode
      */
     public boolean movesLeft()
