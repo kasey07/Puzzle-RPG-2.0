@@ -108,10 +108,10 @@ public class LinkedListTest extends TestCase
         list.insert("B");
         list.insert("C");
         String accum = "";
-      //  for(String item : list.iterator())
-       // {
-       //     accum += item;
-       // }
+        for(String item : list)
+        {
+            accum += item;
+        }
         assertEquals("ABC", accum);
     }
 }

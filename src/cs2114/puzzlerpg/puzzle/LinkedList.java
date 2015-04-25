@@ -10,7 +10,7 @@ import java.util.Iterator;
  * @author Andrew Dudash
  * @version Apr 8, 2015
  */
-public class LinkedList<E>
+public class LinkedList<E> implements Iterable<E>
 {
     private Node<E> head;
 
