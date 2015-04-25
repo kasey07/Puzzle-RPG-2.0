@@ -1,0 +1,121 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (javaClasses.cpp:136), pid=9880, tid=4088
+#  fatal error: Invalid layout of preloaded class
+#
+# JRE version:  (7.0_71-b14) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.71-b01 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000002a5e000):  JavaThread "Unknown thread" [_thread_in_vm, id=4088, stack(0x0000000002a60000,0x0000000002b60000)]
+
+Stack: [0x0000000002a60000,0x0000000002b60000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000000002a5e000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=4088, stack(0x0000000002a60000,0x0000000002b60000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.026 loading class 0x0000000002ba5e60 done
+Event: 0.027 loading class 0x0000000002ba5880 done
+Event: 0.027 loading class 0x0000000002ba5860
+Event: 0.027 loading class 0x0000000002bad9b0
+Event: 0.027 loading class 0x0000000002bad9b0 done
+Event: 0.027 loading class 0x0000000002bad9e0
+Event: 0.027 loading class 0x0000000002bad9e0 done
+Event: 0.027 loading class 0x0000000002bada10
+Event: 0.027 loading class 0x0000000002bada10 done
+Event: 0.027 loading class 0x0000000002ba5860 done
+
+
+Dynamic libraries:
+0x00007ff7df0f0000 - 0x00007ff7df123000 	C:\Program Files\Java\jre7\bin\javaw.exe
+0x00007fff5bfd0000 - 0x00007fff5c17c000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007fff59650000 - 0x00007fff5978e000 	C:\WINDOWS\system32\KERNEL32.DLL
+0x00007fff593d0000 - 0x00007fff594e5000 	C:\WINDOWS\system32\KERNELBASE.dll
+0x00007fff57cc0000 - 0x00007fff57d4e000 	C:\WINDOWS\system32\apphelp.dll
+0x00007fff3be50000 - 0x00007fff3bea3000 	C:\WINDOWS\AppPatch\AppPatch64\AcGenral.DLL
+0x00007fff5bb30000 - 0x00007fff5bbda000 	C:\WINDOWS\system32\msvcrt.dll
+0x00007fff58ef0000 - 0x00007fff58f1e000 	C:\WINDOWS\SYSTEM32\SspiCli.dll
+0x00007fff5a080000 - 0x00007fff5a0d4000 	C:\WINDOWS\system32\SHLWAPI.dll
+0x00007fff59b80000 - 0x00007fff59cf7000 	C:\WINDOWS\system32\USER32.dll
+0x00007fff5be30000 - 0x00007fff5bfc4000 	C:\WINDOWS\system32\ole32.dll
+0x00007fff5a610000 - 0x00007fff5bb28000 	C:\WINDOWS\system32\SHELL32.dll
+0x00007fff586c0000 - 0x00007fff586e1000 	C:\WINDOWS\SYSTEM32\USERENV.dll
+0x00007fff5a530000 - 0x00007fff5a5da000 	C:\WINDOWS\system32\ADVAPI32.dll
+0x00007fff4bd10000 - 0x00007fff4bd2e000 	C:\WINDOWS\SYSTEM32\MPR.dll
+0x00007fff59a20000 - 0x00007fff59b61000 	C:\WINDOWS\system32\RPCRT4.dll
+0x00007fff5a4d0000 - 0x00007fff5a529000 	C:\WINDOWS\SYSTEM32\sechost.dll
+0x00007fff59e60000 - 0x00007fff5a071000 	C:\WINDOWS\SYSTEM32\combase.dll
+0x00007fff5a210000 - 0x00007fff5a361000 	C:\WINDOWS\system32\GDI32.dll
+0x00007fff59120000 - 0x00007fff59135000 	C:\WINDOWS\SYSTEM32\profapi.dll
+0x00007fff57690000 - 0x00007fff57742000 	C:\WINDOWS\SYSTEM32\SHCORE.dll
+0x00007fff59e20000 - 0x00007fff59e56000 	C:\WINDOWS\system32\IMM32.DLL
+0x00007fff5a370000 - 0x00007fff5a4c1000 	C:\WINDOWS\system32\MSCTF.dll
+0x00007fff56970000 - 0x00007fff56beb000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9600.17415_none_6240486fecbd8abb\COMCTL32.dll
+0x000000005e2c0000 - 0x000000005e392000 	C:\Program Files\Java\jre7\bin\msvcr100.dll
+0x000000005dae0000 - 0x000000005e2b3000 	C:\Program Files\Java\jre7\bin\server\jvm.dll
+0x00007fff4fed0000 - 0x00007fff4fed9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007fff547b0000 - 0x00007fff547d2000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007fff59b70000 - 0x00007fff59b77000 	C:\WINDOWS\system32\PSAPI.DLL
+0x00007fff5bdd0000 - 0x00007fff5be2a000 	C:\WINDOWS\system32\WS2_32.dll
+0x00007fff54720000 - 0x00007fff5474a000 	C:\WINDOWS\SYSTEM32\WINMMBASE.dll
+0x00007fff59790000 - 0x00007fff59799000 	C:\WINDOWS\system32\NSI.dll
+0x00007fff594f0000 - 0x00007fff5953f000 	C:\WINDOWS\SYSTEM32\cfgmgr32.dll
+0x00007fff57f40000 - 0x00007fff57f68000 	C:\WINDOWS\SYSTEM32\DEVOBJ.dll
+0x000000005dad0000 - 0x000000005dadf000 	C:\Program Files\Java\jre7\bin\verify.dll
+0x000000005daa0000 - 0x000000005dac8000 	C:\Program Files\Java\jre7\bin\java.dll
+0x000000005da80000 - 0x000000005da95000 	C:\Program Files\Java\jre7\bin\zip.dll
+
+VM Arguments:
+jvm_args: -ea -Dfile.encoding=Cp1252 -Xbootclasspath:C:\Users\Kasey Johnson\AppData\Local\Android\sdk\platforms\android-19\android.jar 
+java_command: org.eclipse.jdt.internal.junit.runner.RemoteTestRunner -version 3 -port 56062 -testLoaderClass org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestLoader -loaderpluginname org.eclipse.jdt.junit.runtime -classNames cs2114.puzzlerpg.LocationTest
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.7.0_71
+USERNAME=Kasey Johnson
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 8.1 , 64 bit Build 9600 
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, erms, ht, tsc, tscinvbit, tscinv
+
+Memory: 4k page, physical 16617968k(11699796k free), swap 19108336k(13229200k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.71-b01) for windows-amd64 JRE (1.7.0_71-b14), built on Sep 26 2014 16:16:12 by "java_re" with unknown MS VC++:1600
+
+time: Wed Apr 22 22:28:39 2015
+elapsed time: 0 seconds
+
