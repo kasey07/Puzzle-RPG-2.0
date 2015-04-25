@@ -36,7 +36,7 @@ public class PuzzleGridTest
      */
     public void testGetType()
     {
-        assertEquals(GemCellType.HEAL, puzzle.getType(new Location(0, 0)));
+        assertEquals(GemCellType.HEAL, puzzle.getType(new Location(1, 1)));
     }
 
 
