@@ -15,12 +15,9 @@ public class PuzzleGrid
     extends sofia.util.Observable
     implements PuzzleGridI
 {
-    private int             size;
-    private GemCellType[][] gemLayout;
+    private LinkedList<GemCellType>[] gemColumns;
     private Random          rand;
 
-
-    // ----------------------------------------------------------
     /**
      * Create a new PuzzleGrid object.
      *
@@ -29,52 +26,55 @@ public class PuzzleGrid
      */
     public PuzzleGrid(int size)
     {
-        this.rand = new Random();
-        this.size = size;
-        gemLayout = new GemCellType[size][size];
-
+        rand = new Random();
         for (int i = 0; i < size; i++)
         {
+            gemColumns[i] = new LinkedList<GemCellType>();
             for (int j = 0; j < size; j++)
             {
-                fillSquare(i, j);
+                gemColumns[i].insert(randomType());
             }
         }
-
     }
 
+    /**
+     * Replaces all gems on the board with
+     * new random values.
+     */
+    public void resetBoard()
+    {
+        for (int x = 0; x < gemColumns.length; x++)
+        {
+            for (int y = 0; y < gemColumns.length; y++)
+            {
+                setType(new Location(x, y), randomType());
+            }
+        }
+    }
 
     /**
      * Randomly Selects a Cell type to fill in layout
      */
-    private void fillSquare(int x, int y)
+    private GemCellType randomType()
     {
         int nextValue = rand.nextInt(4);
         switch (nextValue)
         {
             case 0:
-                gemLayout[x][y] = GemCellType.EARTH;
-                break;
-
+                return GemCellType.EARTH;
             case 1:
-                gemLayout[x][y] = GemCellType.FIRE;
-                break;
-
+                return GemCellType.FIRE;
             case 2:
-                gemLayout[x][y] = GemCellType.WATER;
-                break;
-
+                return GemCellType.WATER;
             case 3:
-                gemLayout[x][y] = GemCellType.HEAL;
-                break;
-
+                return GemCellType.HEAL;
             default:
-                // does nothing
-                break;
+             // This should never happen, but I don't
+             // care enough to use exceptions.
+                return null;
         }
 
     }
-
 
     /**
      * Removes current gemCell and adjacent of similar types then calls
@@ -137,39 +137,53 @@ public class PuzzleGrid
         return locations;
     }
 
-
+    /**
+     * Get the size of the gem grid.
+     * @return The width and height of the gem grid.
+     */
     public int size()
     {
-        return this.size;
+        return gemColumns.length;
     }
 
-
-    public void switchGems(Location location1, Location location2)
+    /**
+     * Switches the values in two cells.
+     * @param loc1 The first gem's location.
+     * @param loc2 The second gem's location.
+     */
+    public void switchGems(Location loc1, Location loc2)
     {
-        GemCellType temp = this.getType(location1);
-        gemLayout[location1.getX()][location1.getY()] = this.getType(location2);
-        gemLayout[location2.getX()][location2.getY()] = temp;
+        GemCellType temp = getType(loc1);
+        setType(loc1, getType(loc2));
+        setType(loc2, temp);
         notifyObservers();
-
     }
 
 
-    public GemCellType getType(Location location)
+    /**
+     * Get the gem type at a location.
+     * @param loc The location of the cell to check.
+     * @param return The type of the cell at that location.
+     */
+    public GemCellType getType(Location loc)
     {
-        return gemLayout[location.getX()][location.getY()];
+        return gemColumns[loc.getX()].get(loc.getY());
     }
 
 
-    public void setType(Location location, GemCellType gemType)
+    /**
+     * Change the gem type at a location.
+     * @param loc The location to be updated.
+     * @param gemType The new gem type value.
+     */
+    public void setType(Location loc, GemCellType gemType)
     {
-        gemLayout[location.getX()][location.getY()] = gemType;
-
+        gemColumns[loc.getX()].set(loc.getY(), gemType);
     }
 
 
     /**
      * Unlimited moves for regular mode
-     *
      * @return always true for regular mode
      */
     public boolean movesLeft()
