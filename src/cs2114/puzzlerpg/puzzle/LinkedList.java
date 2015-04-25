@@ -26,7 +26,7 @@ public class LinkedList<E> implements Iterable<E>
     /**
      * Set the value at the given position
      * @param index The index of the node to change.
-     * @param value The value to change the node to.
+     * @param item The value to change the node to.
      */
     public void set(int index, E item)
     {
@@ -47,6 +47,7 @@ public class LinkedList<E> implements Iterable<E>
      * Return the value at the given position.
      *
      * @param index The given position. @return The value at that position.
+     * @return The item at the index or null if the index does not exist.
      */
     public E get(int index)
     {
@@ -56,7 +57,7 @@ public class LinkedList<E> implements Iterable<E>
         {
             if (head == null)
             {
-                return null;
+                return null; //TODO Exceptions
             }
             currentNode = currentNode.getNext();
         }
@@ -116,21 +117,6 @@ public class LinkedList<E> implements Iterable<E>
         return size() == 0;
     }
 
-
-    /**
-     * Makes this the new element at the given index. The current element at
-     * that index and all elements after it are moved to accommodate the new
-     * value.
-     *
-     * @param newItem The new item.
-     * @param index The index to insert the new value before.
-     */
-    public void insert(E newItem, int index)
-    {
-        // TODO
-    }
-
-
     /**
      * Insert a new value to the front of the list.
      *
@@ -139,7 +125,19 @@ public class LinkedList<E> implements Iterable<E>
      */
     public void insert(E newItem)
     {
-        insert(newItem, 0);
+        if (head == null)
+        {
+            head = new Node<E>(newItem);
+        }
+        else
+        {
+            Node<E> temp = head;
+            while (temp.getNext() != null)
+            {
+                temp = temp.getNext();
+            }
+            temp.setNext(new Node<E>(newItem));
+        }
     }
 
 

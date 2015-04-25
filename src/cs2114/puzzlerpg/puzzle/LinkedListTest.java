@@ -72,20 +72,6 @@ public class LinkedListTest extends TestCase
     }
 
     /**
-     * Test the double argument insert method.
-     */
-    public void testInsertDouble()
-    {
-        list.insert("A", 0);
-        list.insert("B", 1);
-        list.insert("C", 1);
-        assertEquals("A", list.get(0));
-        assertEquals("B", list.get(2));
-        assertEquals("C", list.get(1));
-    }
-
-
-    /**
      * Test the delete method.
      */
     public void testDelete()
