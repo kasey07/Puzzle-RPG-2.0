@@ -13,6 +13,8 @@ import sofia.graphics.RectangleShape;
 public class GemShape
     extends RectangleShape
 {
+    private GemCellType type;
+
     // ----------------------------------------------------------
     /**
      * Create a new GemShape object.
@@ -31,8 +33,17 @@ public class GemShape
         GemCellType type)
     {
         super(left, top, right, bottom);
-
+        this.type = type;
         setImage(type.getImage());
+    }
+
+    /**
+     * Get the type of the gem shape.
+     * @return The type of the gem shape.
+     */
+    public GemCellType getType()
+    {
+        return type;
     }
 
 }
