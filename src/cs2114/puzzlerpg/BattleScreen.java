@@ -180,14 +180,17 @@ public class BattleScreen
             {
                 firstClick = new Location(xValue, yValue);
             }
-            else
+
+            else if (Location.isAdjacent(firstClick, new Location(
+                xValue,
+                yValue)))
             {
 
                 puzzle.switchGems(firstClick, new Location(xValue, yValue));
 
-                puzzle.remove(new Location(xValue, yValue));
-                puzzle
-                    .remove(new Location(firstClick.getX(), firstClick.getY()));
+                // puzzle.remove(new Location(xValue, yValue));
+                // puzzle
+                // .remove(new Location(firstClick.getX(), firstClick.getY()));
                 firstClick = null;
 
             }

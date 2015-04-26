@@ -1,29 +1,30 @@
 package cs2114.puzzlerpg.puzzle;
 
-
-
 /**
- *  This Location class represents a constant
- *  point in a 2D grid.
+ * This Location class represents a constant point in a 2D grid.
  *
- *  @author andrew
- *  @version Mar 29, 2015
+ * @author andrew
+ * @version Mar 29, 2015
  */
 public class Location
 {
     private final int x;
     private final int y;
 
+
     static public boolean isAdjacent(Location loc1, Location loc2)
     {
-        return false; //TODO
+        return false; // TODO
     }
 
+
     /**
-     * Create a new Location with constant
-     * values 'x' and 'y'.
-     * @param x x coordinate
-     * @param y y coordinate
+     * Create a new Location with constant values 'x' and 'y'.
+     *
+     * @param x
+     *            x coordinate
+     * @param y
+     *            y coordinate
      */
     public Location(int x, int y)
     {
@@ -31,9 +32,10 @@ public class Location
         this.y = y;
     }
 
+
     /**
-     * Return the x coordinate of the
-     * location.
+     * Return the x coordinate of the location.
+     *
      * @return x coordinate
      */
     public int getX()
@@ -41,15 +43,17 @@ public class Location
         return x;
     }
 
+
     /**
-     * Return the y coordinate of the
-     * location.
+     * Return the y coordinate of the location.
+     *
      * @return y coordinate.
      */
     public int getY()
     {
         return y;
     }
+
 
     /**
      * Compare the location to another object to determine if they are equal
@@ -90,4 +94,3 @@ public class Location
 
     }
 }
-

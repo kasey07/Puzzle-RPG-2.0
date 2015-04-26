@@ -14,11 +14,13 @@ public class RougeTest
     extends TestCase
 {
     private Rouge theif;
+    private Mage  magey;
 
 
     public void setUp()
     {
         theif = new Rouge("Sneaky");
+        magey = new Mage("Sparky");
     }
 
 

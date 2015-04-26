@@ -11,7 +11,7 @@ public class Mage
     extends Player
 {
 
-    private boolean specialAbility = false;
+    private boolean special = false;
 
 
     // ----------------------------------------------------------
@@ -34,7 +34,7 @@ public class Mage
     {
         if (getCounter() >= 20)
         {
-            specialAbility = true;
+            special = true;
             setCounter(0);
         }
 
@@ -49,11 +49,11 @@ public class Mage
      */
     public int getAttack()
     {
-        int attack = getAttack();
-        if (specialAbility)
+        int attack = super.getAttack();
+        if (special)
         {
             attack *= 2;
-            specialAbility = false;
+            special = false;
 
         }
         return attack;
