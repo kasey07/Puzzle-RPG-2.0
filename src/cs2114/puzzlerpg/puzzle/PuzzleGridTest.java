@@ -69,8 +69,8 @@ public class PuzzleGridTest
     {
         puzzle.remove(new Location(2, 2));
 
-        assertEquals(GemCellType.FIRE, puzzle.getType(new Location(0, 2)));
-        assertEquals(GemCellType.HEAL, puzzle.getType(new Location(1, 2)));
+        assertEquals(GemCellType.WATER, puzzle.getType(new Location(0, 2)));
+        assertEquals(GemCellType.FIRE, puzzle.getType(new Location(1, 2)));
         assertEquals(GemCellType.HEAL, puzzle.getType(new Location(2, 2)));
     }
 
