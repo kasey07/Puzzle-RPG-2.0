@@ -139,6 +139,16 @@ public class RPGController
         return mainChar;
     }
 
+    /**
+     * Get the current monster.
+     *
+     * @return The current monster.
+     */
+    public Monsters getMonster()
+    {
+        return monsters.peek();
+    }
+
 
     /**
      * Updates player and monster stats

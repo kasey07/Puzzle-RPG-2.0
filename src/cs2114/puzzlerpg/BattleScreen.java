@@ -180,24 +180,12 @@ public class BattleScreen
     /**
      * Update view for monster.
      *
-     * @param monsters
-     *            The monster to display data on in views.
+     * @param control The rpg controller.
      */
-    public void changeWasObserved(Monsters monsters)
+    public void changeWasObserved(RPGController control)
     {
-        monsterTurns.setText(monsters.getDefaultTurns());
-    }
-
-
-    /**
-     * Update view for player data.
-     *
-     * @param character
-     *            The player to display data on in views.
-     */
-    public void changeWasObserved(Player character)
-    {
-        charHealth.setText(character.getHealth());
+        monsterTurns.setText(ctrl.getMonster().getDefaultTurns());
+        charHealth.setText(ctrl.getPlayer().getHealth());
     }
 
 
