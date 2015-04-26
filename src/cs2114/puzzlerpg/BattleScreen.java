@@ -1,5 +1,6 @@
 package cs2114.puzzlerpg;
 
+import cs2114.puzzlerpg.playerclasses.Player;
 import sofia.graphics.Color;
 import android.widget.TextView;
 import cs2114.puzzlerpg.playerclasses.Rouge;
@@ -190,6 +191,15 @@ public class BattleScreen
 
         }
 
+    }
+
+    /**
+     * Update view for player health.
+     * @param character The player to display data on in views.
+     */
+    public void changeWasObserved(Player character)
+    {
+        charHealth.setText(character.getHealth());
     }
 
 
