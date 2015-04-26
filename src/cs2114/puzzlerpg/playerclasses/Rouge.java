@@ -1,5 +1,7 @@
 package cs2114.puzzlerpg.playerclasses;
 
+import sofia.util.Random;
+
 // -------------------------------------------------------------------------
 /**
  * Balanced class. Has the same damage and defense. Special ability delays all
@@ -11,6 +13,8 @@ package cs2114.puzzlerpg.playerclasses;
 public class Rouge
     extends Player
 {
+    private Random rand;
+
 
     // ----------------------------------------------------------
     /**
@@ -21,16 +25,22 @@ public class Rouge
      */
     public Rouge(String name)
     {
-        super(8000, 750, name, 750, 35);
+        super(8000, 750, name, 750, 15);
     }
 
 
     /**
-     * Adds 5 turns until the monster attacks
+     * Adds 0 to 7 turns until the monster attacks
+     * @return returns number of turns to reduce monster turn
      */
-    public void specialAbility()
+    public int specialAbility()
     {
-        // TODO Auto-generated method stub
+        if (getCounter() == 35)
+        {
+            setCounter(0);
+            return rand.nextInt(7);
+        }
+        return 0;
 
     }
 

@@ -33,7 +33,8 @@ public class PuzzleGrid
             gemColumns[i] = new LinkedList<GemCellType>();
             for (int j = 0; j < size; j++)
             {
-                gemColumns[i].insert(randomType());
+                LinkedList<GemCellType> temp = gemColumns[i];
+                temp.insert(randomType());
             }
         }
     }
@@ -166,7 +167,9 @@ public class PuzzleGrid
      */
     public GemCellType getType(Location loc)
     {
-        return gemColumns[loc.getX()].get(loc.getY());
+        int x = loc.getX();
+        int y = loc.getY();
+        return gemColumns[x].get(y);
     }
 
 

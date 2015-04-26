@@ -7,7 +7,7 @@ package cs2114.puzzlerpg.playerclasses;
  * @author Kasey Johnson
  * @version Apr 24, 2015
  */
-public abstract class Player
+public class Player
 {
     private int    health;
     private int    defense;
@@ -41,6 +41,7 @@ public abstract class Player
         this.attack = attack;
         this.turns = turns;
         this.maxHealth = health;
+        this.counter = 0;
 
     }
 
@@ -157,33 +158,14 @@ public abstract class Player
 
 
     /**
-     * Special ability of the player
-     */
-    public abstract void specialAbility();
-
-
-    /**
      * number of turns till special ability available
      *
      * @return the number of turns till special attack available
      */
     public int specialTurnsLeft()
     {
-        return turns;
+        return turns - counter;
 
-    }
-
-
-    // ----------------------------------------------------------
-    /**
-     * Player takes damage
-     *
-     * @param damage
-     *            damage caused of player
-     */
-    public void damageTaken(int damage)
-    {
-        health -= damage;
     }
 
 

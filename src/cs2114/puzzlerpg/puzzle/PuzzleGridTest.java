@@ -14,21 +14,23 @@ public class PuzzleGridTest
 {
     private PuzzleGrid puzzle;
 
+
     public void setUp()
     {
         puzzle = new PuzzleGrid(3);
-        puzzle.setType(new Location(0, 0), GemCellType.FIRE);
-        puzzle.setType(new Location(1, 0), GemCellType.FIRE);
-        puzzle.setType(new Location(2, 0), GemCellType.FIRE);
+        puzzle.setType(new Location(0, 0), GemCellType.HEAL);
+        puzzle.setType(new Location(1, 0), GemCellType.HEAL);
+        puzzle.setType(new Location(2, 0), GemCellType.HEAL);
 
-        puzzle.setType(new Location(0, 1), GemCellType.WATER);
+        puzzle.setType(new Location(0, 1), GemCellType.HEAL);
         puzzle.setType(new Location(1, 1), GemCellType.HEAL);
-        puzzle.setType(new Location(2, 1), GemCellType.WATER);
+        puzzle.setType(new Location(2, 1), GemCellType.HEAL);
 
         puzzle.setType(new Location(0, 2), GemCellType.WATER);
-        puzzle.setType(new Location(1, 2), GemCellType.WATER);
-        puzzle.setType(new Location(2, 2), GemCellType.WATER);
+        puzzle.setType(new Location(1, 2), GemCellType.FIRE);
+        puzzle.setType(new Location(2, 2), GemCellType.EARTH);
     }
+
 
     /**
      * Test Get Type Method
@@ -38,6 +40,7 @@ public class PuzzleGridTest
         assertEquals(GemCellType.HEAL, puzzle.getType(new Location(1, 1)));
     }
 
+
     /**
      * Test the size method.
      */
@@ -46,12 +49,13 @@ public class PuzzleGridTest
         assertEquals(3, puzzle.size());
     }
 
+
     /**
      * Test the switchGems method.
      */
     public void testSwitchGems()
     {
-        puzzle.switchGems(new Location(0, 1), new Location(1,1));
+        puzzle.switchGems(new Location(0, 1), new Location(1, 1));
         assertEquals(GemCellType.HEAL, puzzle.getType(new Location(0, 1)));
         assertEquals(GemCellType.WATER, puzzle.getType(new Location(1, 1)));
     }
@@ -63,6 +67,7 @@ public class PuzzleGridTest
     public void testRemove()
     {
         puzzle.remove(new Location(2, 2));
+
         assertEquals(GemCellType.FIRE, puzzle.getType(new Location(0, 2)));
         assertEquals(GemCellType.HEAL, puzzle.getType(new Location(1, 2)));
         assertEquals(GemCellType.FIRE, puzzle.getType(new Location(2, 2)));

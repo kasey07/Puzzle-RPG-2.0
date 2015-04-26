@@ -33,8 +33,11 @@ public class Warrior
      */
     public void specialAbility()
     {
-        this.specialAbility = true;
-        setCounter(2);
+        if (getCounter() == 20)
+        {
+            this.specialAbility = true;
+            setCounter(2);
+        }
 
     }
 
@@ -46,7 +49,7 @@ public class Warrior
      * @param damage
      *            damage received
      */
-    public void damage(int damage)
+    public void reduceHealth(int damage)
     {
         int damageTaken = damage;
         if (specialAbility)
@@ -58,7 +61,7 @@ public class Warrior
                 specialAbility = false;
             }
         }
-        damage(damageTaken);
+        super.reduceHealth(damageTaken);
     }
 
 }
