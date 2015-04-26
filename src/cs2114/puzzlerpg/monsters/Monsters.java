@@ -161,11 +161,15 @@ public class Monsters
     /**
      * Get the image name of monster
      *
-     * @return file name of mosnters picture
+     * @return file name of monsters picture
      */
     public String getImage()
     {
         return pic;
     }
+
+    /**
+     * Reduce Health
+     */
 
 }

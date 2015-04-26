@@ -32,6 +32,7 @@ public class RPGController
     {
 
         this.mainChar = player;
+        monsters = new Stack<Monsters>();
         this.addMonsters();
     }
 
@@ -147,6 +148,12 @@ public class RPGController
      */
     public void update(int combo)
     {
+        // health of monster
+        // check if monster is dead
+        // update monster moves and character counter
+        // check if monster attacks
+        // if true attack resest monster turn count
+        // else -- monster attack
 
     }
 
