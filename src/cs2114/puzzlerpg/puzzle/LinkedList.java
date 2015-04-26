@@ -47,6 +47,7 @@ public class LinkedList<E>
             {
                 return; // Should throw an exception.
             }
+            temp = temp.getNext();
         }
         temp.setData(item);
     }
