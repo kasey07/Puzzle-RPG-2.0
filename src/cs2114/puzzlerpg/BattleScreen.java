@@ -218,6 +218,7 @@ public class BattleScreen
                         oldGem.getHeight(),
                         oldGem.getType());
                 }
+                gem[i][j].getImage();
             }
 
         }
