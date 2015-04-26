@@ -103,24 +103,18 @@ public class BattleScreen
 
             }
         }
-
-        int length =
-            (Math.min(shapeView.getHeight(), shapeView.getWidth())) / 8;
         player =
-            new RectangleShape(
-                length * 7,
-                length * 7,
-                (length * (8)),
-                length * (8));
+            new RectangleShape(length * 6, length * 2, (length * (6)), length
+                * (2 + 1));
 
         player.setColor(Color.beige);
         player.setFillColor(Color.black);
         monster =
             new RectangleShape(
-                length * 0,
-                length * 8,
-                (length * (0)),
-                length * (8));
+                length * 6,
+                length * 6,
+                (length * (6)),
+                length * (6));
         monster.setColor(Color.black);
         monster.setFillColor(Color.black);
         shapeView.add(player);
@@ -203,15 +197,6 @@ public class BattleScreen
 
     // ----------------------------------------------------------
     /**
-     * special clicked and activated
-     */
-    public void specialClicked()
-    {
-
-    }
-
-
-    /**
      * Place a description of your method here.
      *
      * @param puzzle
@@ -222,11 +207,17 @@ public class BattleScreen
         {
             for (int j = 0; j < puzzle.size(); j++)
             {
-
-                gem[i][j].setImage(puzzle.getType(new Location(i, j))
-                    .getImage());
-                // update player health field and monster move field
-
+                GemShape oldGem = gem[i][j];
+                if (oldGem.getType() != puzzle.getType(new Location(i, j)))
+                {
+                    oldGem.animate(400).alpha(0).rotation(720).removeWhenComplete().play();
+                    gem[i][j] = new GemShape(
+                        oldGem.getX(),
+                        oldGem.getY(),
+                        oldGem.getWidth(),
+                        oldGem.getHeight(),
+                        oldGem.getType());
+                }
             }
 
         }
