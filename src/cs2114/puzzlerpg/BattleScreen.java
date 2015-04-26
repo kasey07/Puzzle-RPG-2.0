@@ -226,7 +226,7 @@ public class BattleScreen
                             oldGem.getHeight(),
                             oldGem.getType());
                 }
-                gem[i][j].getImage();
+                gem[i][j].setImage(puzzle.getType(new Location(i, j)).getImage());
             }
 
         }
