@@ -125,5 +125,17 @@ public class LocationTest
         assertFalse(location.equals(location2));
     }
 
+    /**
+     * Test the isAdjacent method.
+     */
+    public void testIsAdjacent()
+    {
+        location = new Location(1,1);
+        assertTrue(Location.isAdjacent(location, new Location(0, 1)));
+        assertTrue(Location.isAdjacent(location, new Location(1,2)));
+        assertTrue(Location.isAdjacent(new Location(0, 1), location));
+        assertFalse(Location.isAdjacent(location, new Location(0, 0)));
+    }
+
 
 }
