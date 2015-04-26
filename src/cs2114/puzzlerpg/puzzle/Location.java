@@ -26,8 +26,10 @@ public class Location
 
         int x = loc1.getX();
         int y = loc1.getY();
-        return loc2 == new Location(x + 1, y) || loc2 == new Location(x - 1, y)
-            || loc2 == new Location(x, y + 1) || loc2 == new Location(x, y - 1);
+        return loc2.equals(new Location(x + 1, y))
+            || loc2.equals(new Location(x - 1, y))
+            || loc2.equals(new Location(x, y + 1))
+            || loc2.equals(new Location(x, y - 1));
     }
 
 
