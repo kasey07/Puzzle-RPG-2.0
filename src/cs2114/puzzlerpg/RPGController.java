@@ -149,6 +149,7 @@ public class RPGController
     public void update(int combo)
     {
         // health of monster
+        monsters.peek().reduceHealth(mainChar.getAttack(combo));
         // check if monster is dead
         // update monster moves and character counter
         // check if monster attacks

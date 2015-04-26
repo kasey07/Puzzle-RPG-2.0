@@ -63,7 +63,7 @@ public class MageTest
     {
         magey.setCounter(20);
         magey.specialAbility();
-        assertEquals(1500, magey.getAttack());
+        assertEquals(1500, magey.getAttack(3));
     }
 
 
@@ -74,6 +74,6 @@ public class MageTest
     {
 
         magey.specialAbility();
-        assertEquals(750, magey.getAttack());
+        assertEquals(750, magey.getAttack(3));
     }
 }

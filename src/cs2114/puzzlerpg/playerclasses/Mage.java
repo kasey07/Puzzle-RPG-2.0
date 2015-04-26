@@ -47,9 +47,9 @@ public class Mage
      *
      * @return the attack of the player
      */
-    public int getAttack()
+    public int getAttack(int combo)
     {
-        int attack = super.getAttack();
+        int attack = super.getAttack(combo);
         if (special)
         {
             attack *= 2;

@@ -78,11 +78,29 @@ public class PlayerTest
      */
     public void testConstructor()
     {
-        assertEquals(500, character.getAttack());
+        assertEquals(500, character.getAttack(3));
         assertEquals(1000, character.getDefense());
         assertEquals("Mary", character.getName());
         assertEquals(20, character.getTurns());
         assertEquals(0, character.getCounter());
+    }
+
+
+    /**
+     * Test attack when combo is 5 or greater
+     */
+    public void testAttack()
+    {
+        assertEquals(666, character.getAttack(5));
+    }
+
+
+    /**
+     * Test attack when combo is 4
+     */
+    public void testAttack2()
+    {
+        assertEquals(666, character.getAttack(4));
     }
 
 
@@ -92,7 +110,7 @@ public class PlayerTest
     public void testSetCounter()
     {
         character.setCounter(30);
-        assertEquals(30, character.getCounter());
+        assertEquals(583, character.getCounter());
     }
 
 

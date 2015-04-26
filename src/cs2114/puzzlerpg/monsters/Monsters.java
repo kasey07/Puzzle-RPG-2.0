@@ -168,8 +168,25 @@ public class Monsters
         return pic;
     }
 
+
     /**
-     * Reduce Health
+     * Set Health of monster after damage
+     *
+     * @param damageTaken
+     *            damage taken by player
      */
+    public void reduceHealth(int damageTaken)
+    {
+
+        int actualDamage = Math.max(0, damageTaken - defense / 2);
+        if (health - actualDamage < 0)
+        {
+            this.health = 0;
+        }
+        else
+        {
+            this.health -= actualDamage;
+        }
+    }
 
 }
