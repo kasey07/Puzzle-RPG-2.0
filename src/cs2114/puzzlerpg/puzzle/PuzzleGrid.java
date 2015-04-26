@@ -113,6 +113,10 @@ public class PuzzleGrid
         {
             return 0;
         }
+        else if (!getType(loc).equals(type))
+        {
+            return 0;
+        }
         else
         {
             int x = loc.getX();
