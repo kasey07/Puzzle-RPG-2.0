@@ -205,11 +205,17 @@ public class BattleScreen
         {
             for (int j = 0; j < puzzle.size(); j++)
             {
-
-                gem[i][j].setImage(puzzle.getType(new Location(i, j))
-                    .getImage());
-                // update player health field and monster move field
-
+                GemShape oldGem = gem[i][j];
+                if (oldGem.getType() != puzzle.getType(new Location(i, j)))
+                {
+                    oldGem.animate(400).alpha(0).rotation(720).removeWhenComplete().play();
+                    gem[i][j] = new GemShape(
+                        oldGem.getX(),
+                        oldGem.getY(),
+                        oldGem.getWidth(),
+                        oldGem.getHeight(),
+                        oldGem.getType());
+                }
             }
 
         }
