@@ -1,5 +1,6 @@
 package cs2114.puzzlerpg;
 
+import cs2114.puzzlerpg.monsters.Monsters;
 import cs2114.puzzlerpg.playerclasses.Player;
 import sofia.graphics.Color;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ public class BattleScreen
     private RPGController    ctrl;
     private TextView         charName;
     private TextView         charHealth;
+    private TextView         monsterTurns;
 
 
     // ----------------------------------------------------------
@@ -194,7 +196,16 @@ public class BattleScreen
     }
 
     /**
-     * Update view for player health.
+     * Update view for monster.
+     * @param monsters The monster to display data on in views.
+     */
+    public void changeWasObserved(Monsters monsters)
+    {
+        monsterTurns.setText(monsters.getDefaultTurns());
+    }
+
+    /**
+     * Update view for player data.
      * @param character The player to display data on in views.
      */
     public void changeWasObserved(Player character)
