@@ -1,6 +1,6 @@
 package cs2114.puzzlerpg;
 
-import cs2114.puzzlerpg.monsters.ElementType;
+import cs2114.puzzlerpg.puzzle.GemCellType;
 import cs2114.puzzlerpg.monsters.Monsters;
 import java.util.Stack;
 import cs2114.puzzlerpg.playerclasses.Player;
@@ -46,7 +46,7 @@ public class RPGController
 
         monsters.push(new Monsters(
             1000,
-            ElementType.EARTH,
+            GemCellType.EARTH,
             500,
             1,
             "Troll",
@@ -54,7 +54,7 @@ public class RPGController
             "Troll.png"));
         monsters.push(new Monsters(
             10000,
-            ElementType.FIRE,
+            GemCellType.FIRE,
             600,
             2,
             "Fire Dragon",
@@ -62,7 +62,7 @@ public class RPGController
             "fireDragon.png"));
         monsters.push(new Monsters(
             5000,
-            ElementType.FIRE,
+            GemCellType.FIRE,
             700,
             3,
             "Lava",
@@ -70,7 +70,7 @@ public class RPGController
             "lava.png"));
         monsters.push(new Monsters(
             7000,
-            ElementType.WATER,
+            GemCellType.WATER,
             700,
             4,
             "FishMan",
@@ -78,7 +78,7 @@ public class RPGController
             "fish.png"));
         monsters.push(new Monsters(
             15000,
-            ElementType.WATER,
+            GemCellType.WATER,
             400,
             5,
             "Drowner",
@@ -86,7 +86,7 @@ public class RPGController
             "drowner.png"));
         monsters.push(new Monsters(
             50000,
-            ElementType.EARTH,
+            GemCellType.EARTH,
             800,
             6,
             "RatKing",
@@ -94,7 +94,7 @@ public class RPGController
             "ratking.png"));
         monsters.push(new Monsters(
             20000,
-            ElementType.FIRE,
+            GemCellType.FIRE,
             900,
             7,
             "FireTroll",
@@ -102,7 +102,7 @@ public class RPGController
             "fireTroll.png"));
         monsters.push(new Monsters(
             10000,
-            ElementType.WATER,
+            GemCellType.WATER,
             800,
             8,
             "Imp",
@@ -110,7 +110,7 @@ public class RPGController
             "imp.png"));
         monsters.push(new Monsters(
             20000,
-            ElementType.EARTH,
+            GemCellType.EARTH,
             700,
             9,
             "Goblin",
@@ -118,7 +118,7 @@ public class RPGController
             "goblin.png"));
         monsters.push(new Monsters(
             40000,
-            ElementType.FIRE,
+            GemCellType.FIRE,
             1000,
             10,
             "Dragon King",
@@ -145,17 +145,45 @@ public class RPGController
      *
      * @param combo
      *            the number of gems in combo
+     * @param typeRemoved
+     *            element type of combo
      */
-    public void update(int combo)
+    public void update(int combo, GemCellType typeRemoved)
     {
-        // health of monster
-        monsters.peek().reduceHealth(mainChar.getAttack(combo));
-        // check if monster is dead
-        // update monster moves and character counter
-        // check if monster attacks
-        // if true attack resest monster turn count
-        // else -- monster attack
+        Monsters mon = monsters.peek();
+        mainChar.setCounter(mainChar.getCounter() + 1);
+        if (typeRemoved.equals(GemCellType.HEAL))
+        {
+            mainChar.addHealth(combo * 10);
+        }
+        else
+        {
+            if (typeRemoved.equals(mon.getType().getWeakness()))
+                // If attacked by weakness additional 100 damage
+                mon.reduceHealth(mainChar.getAttack(combo) + 100);
+            else
+            {
+                mon.reduceHealth(mainChar.getAttack(combo));
 
+            }
+            if (mon.getHealth() == 0)
+            {
+                // remove dead monster from stack
+                monsters.pop();
+            }
+            else
+            {
+                // if still alive update counter and process attack
+                mon.setAttackTurns(mon.attackTurns() - 1);
+                // see if attack turns is 0
+                if (mon.attackTurns() == 0)
+                {
+                    mainChar.reduceHealth(mon.attack());
+                    mon.setAttackTurns(mon.getDefaultTurns());
+                }
+
+            }
+
+        }
     }
-
 }

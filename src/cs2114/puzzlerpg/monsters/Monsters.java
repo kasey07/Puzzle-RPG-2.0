@@ -1,5 +1,6 @@
 package cs2114.puzzlerpg.monsters;
 
+import cs2114.puzzlerpg.puzzle.GemCellType;
 import java.util.Random;
 
 // -------------------------------------------------------------------------
@@ -12,7 +13,7 @@ import java.util.Random;
 public class Monsters
 {
     private int         health;
-    private ElementType type;
+    private GemCellType type;
     private int         defense;
     private int         difficulty;
     private String      name;
@@ -45,7 +46,7 @@ public class Monsters
      */
     public Monsters(
         int health,
-        ElementType type,
+        GemCellType type,
         int defense,
         int difficulty,
         String name,
@@ -81,7 +82,7 @@ public class Monsters
      *
      * @return the type of the monster
      */
-    public ElementType getType()
+    public GemCellType getType()
     {
         return type;
     }
@@ -123,7 +124,7 @@ public class Monsters
 
 
     /**
-     * Updates attack turns and attacks when turns is 0
+     * returns attack turns number (0 mean attack turn)
      *
      * @return attackTurns
      */
