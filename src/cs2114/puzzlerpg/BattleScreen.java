@@ -222,8 +222,8 @@ public class BattleScreen
                         new GemShape(
                             oldGem.getX(),
                             oldGem.getY(),
-                            oldGem.getWidth(),
-                            oldGem.getHeight(),
+                            oldGem.getX() + oldGem.getWidth(),
+                            oldGem.getY() + oldGem.getHeight(),
                             oldGem.getType());
                 }
                 gem[i][j].getImage();
