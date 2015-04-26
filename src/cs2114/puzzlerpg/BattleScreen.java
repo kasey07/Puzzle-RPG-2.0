@@ -105,7 +105,7 @@ public class BattleScreen
         }
         player =
 
-        new RectangleShape(length * 3, length * 3, (length * (3)), length * 3);
+        new RectangleShape(length, length * 2, (length), length * 2);
 
         player.setColor(Color.beige);
         player.setFillColor(Color.black);
@@ -226,7 +226,7 @@ public class BattleScreen
                             oldGem.getHeight(),
                             oldGem.getType());
                 }
-                gem[i][j].setImage(puzzle.getType(new Location(i, j)).getImage());
+                gem[i][j].getImage();
             }
 
         }
