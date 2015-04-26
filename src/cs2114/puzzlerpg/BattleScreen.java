@@ -29,7 +29,6 @@ public class BattleScreen
     private int              length;
     private ShapeView        shapeView;
     private GemShape[][]     gem;
-    private Location         firstClick;
     private static final int GRID_SIZE = 4;
     private RectangleShape   player;
     private RectangleShape   monster;
@@ -50,7 +49,6 @@ public class BattleScreen
         charName.setText(ctrl.getPlayer().getName());
         charHealth.setText(ctrl.getPlayer().getHealth() + "/"
             + ctrl.getPlayer().getMaxHealth());
-        firstClick = null;
 
         puzzle = new PuzzleGrid(GRID_SIZE);
         puzzle.addObserver(this);
@@ -167,27 +165,10 @@ public class BattleScreen
         {
             int yValue = getValue(y);
             int xValue = getValue(x);
-            if (firstClick == null)
-            {
-                firstClick = new Location(xValue, yValue);
-            }
 
-            else if (Location.isAdjacent(firstClick, new Location(
-                xValue,
-                yValue)))
-            {
-
-                puzzle.switchGems(firstClick, new Location(xValue, yValue));
-
-                int comboNumber = puzzle.remove(new Location(xValue, yValue));
-
-                // puzzle
-                // .remove(new Location(firstClick.getX(), firstClick.getY()));
-                ctrl.update(comboNumber);
-                firstClick = null;
-
-            }
-
+            ctrl.update(
+                puzzle.remove(new Location(xValue, yValue)),
+                puzzle.getType(new Location(xValue, yValue)));
         }
 
     }

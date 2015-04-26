@@ -89,7 +89,9 @@ public class PuzzleGrid
      */
     public int remove(Location loc)
     {
+
         return removeHelper(loc, getType(loc), new LinkedList<Location>());
+
     }
 
 
@@ -129,30 +131,43 @@ public class PuzzleGrid
                     + removeHelper(new Location(x, y - 1), type, visited);
             gemColumns[x].delete(y);
             gemColumns[x].insert(randomType());
+            notifyObservers();
             return scoreValue + 1;
         }
     }
 
+
     /**
-     * Get the total amount of adjacent gems
-     * of the same type.
-     * @param loc The start location.
+     * Get the total amount of adjacent gems of the same type.
+     *
+     * @param loc
+     *            The start location.
      * @return Amount of adjacent cells with same gem type.
      */
     public int countAdjacent(Location loc)
     {
-        return countAdjacentHelper(loc, getType(loc), new LinkedList<Location>());
+        return countAdjacentHelper(
+            loc,
+            getType(loc),
+            new LinkedList<Location>());
     }
 
+
     /**
-     * Get the total amount of adjacent gems
-     * of the same type.
-     * @param loc The current location to spread from.
-     * @param type The type to search for.
-     * @param visited A list of locations to ignore.
+     * Get the total amount of adjacent gems of the same type.
+     *
+     * @param loc
+     *            The current location to spread from.
+     * @param type
+     *            The type to search for.
+     * @param visited
+     *            A list of locations to ignore.
      * @return Amount of adjacent cells with same gem type.
      */
-    private int countAdjacentHelper(Location loc, GemCellType type, LinkedList<Location> visited)
+    private int countAdjacentHelper(
+        Location loc,
+        GemCellType type,
+        LinkedList<Location> visited)
     {
         if (getType(loc) == null || visited.contains(loc))
         {
@@ -215,7 +230,8 @@ public class PuzzleGrid
     {
         int x = loc.getX();
         int y = loc.getY();
-        if ((0 <= x && x < gemColumns.length) && (0 <= y && y < gemColumns.length))
+        if ((0 <= x && x < gemColumns.length)
+            && (0 <= y && y < gemColumns.length))
         {
             return gemColumns[x].get(y);
         }

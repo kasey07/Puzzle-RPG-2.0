@@ -14,7 +14,8 @@ public enum GemCellType
     WATER,
     EARTH,
     HEAL;
-    private String imageName;
+    private String      imageName;
+    private GemCellType weakness;
 
     static
     {
@@ -22,6 +23,10 @@ public enum GemCellType
         WATER.imageName = "water.png";
         EARTH.imageName = "earth.png";
         HEAL.imageName = "heal.png";
+
+        FIRE.weakness = WATER;
+        WATER.weakness = EARTH;
+        EARTH.weakness = FIRE;
 
     }
 
@@ -35,5 +40,18 @@ public enum GemCellType
     public String getImage()
     {
         return imageName;
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * GEt opposite element
+     *
+     * @return the opposite element
+     */
+    public GemCellType getWeakness()
+    {
+
+        return weakness;
     }
 }
