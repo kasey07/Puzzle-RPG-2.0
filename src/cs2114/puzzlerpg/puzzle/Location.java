@@ -12,9 +12,22 @@ public class Location
     private final int y;
 
 
+    /**
+     * Check if two locations are adjacent. Diagonals do not count.
+     *
+     * @param loc1
+     *            The first location.
+     * @param loc2
+     *            The second location.
+     * @return True if adjacent, false if not.
+     */
     static public boolean isAdjacent(Location loc1, Location loc2)
     {
-        return false; // TODO
+
+        int x = loc1.getX();
+        int y = loc1.getY();
+        return loc2 == new Location(x + 1, y) || loc2 == new Location(x - 1, y)
+            || loc2 == new Location(x, y + 1) || loc2 == new Location(x, y - 1);
     }
 
 
