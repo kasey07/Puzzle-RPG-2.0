@@ -211,7 +211,14 @@ public class PuzzleGrid
     {
         int x = loc.getX();
         int y = loc.getY();
-        return gemColumns[x].get(y);
+        if ((0 <= x && x < gemColumns.length) && (0 <= y && y < gemColumns.length))
+        {
+            return gemColumns[x].get(y);
+        }
+        else
+        {
+            return null;
+        }
     }
 
 
