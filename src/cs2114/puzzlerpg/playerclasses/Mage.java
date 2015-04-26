@@ -23,7 +23,7 @@ public class Mage
      */
     public Mage(String name)
     {
-        super(7500, 500, name, 1000, 20);
+        super(7500, 500, name, 750, 20);
     }
 
 
@@ -32,8 +32,11 @@ public class Mage
      */
     public void specialAbility()
     {
-        specialAbility = true;
-        setCounter(2);
+        if (getCounter() >= 20)
+        {
+            specialAbility = true;
+            setCounter(0);
+        }
 
     }
 
@@ -41,6 +44,7 @@ public class Mage
     // ----------------------------------------------------------
     /**
      * Place a description of your method here.
+     *
      * @return the attack of the player
      */
     public int getAttack()
@@ -49,12 +53,8 @@ public class Mage
         if (specialAbility)
         {
             attack *= 2;
-            setCounter(getCounter() - 1);
-            if (getCounter() == 0)
-            {
-                specialAbility = false;
+            specialAbility = false;
 
-            }
         }
         return attack;
     }

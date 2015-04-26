@@ -31,14 +31,16 @@ public class Rouge
 
     /**
      * Adds 0 to 7 turns until the monster attacks
+     *
      * @return returns number of turns to reduce monster turn
      */
     public int specialAbility()
     {
-        if (getCounter() == 35)
+        if (getCounter() >= 15)
         {
+            int randNum = rand.nextInt(7);
             setCounter(0);
-            return rand.nextInt(7);
+            return randNum;
         }
         return 0;
 

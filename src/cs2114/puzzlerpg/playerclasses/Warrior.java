@@ -33,7 +33,7 @@ public class Warrior
      */
     public void specialAbility()
     {
-        if (getCounter() == 20)
+        if (getCounter() >= 20)
         {
             this.specialAbility = true;
             setCounter(2);

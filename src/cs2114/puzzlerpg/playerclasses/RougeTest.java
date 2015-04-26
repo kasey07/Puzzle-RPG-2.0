@@ -1,5 +1,6 @@
 package cs2114.puzzlerpg.playerclasses;
 
+import sofia.util.Random;
 import student.TestCase;
 
 // -------------------------------------------------------------------------
@@ -28,5 +29,16 @@ public class RougeTest
     {
         assertEquals(0, theif.specialAbility());
 
+    }
+
+
+    /**
+     * Test special ability when it should activiate
+     */
+    public void testSpecialAbility2()
+    {
+        theif.setCounter(15);
+        Random.setNextInts(5);
+        assertEquals(5, theif.specialAbility());
     }
 }
