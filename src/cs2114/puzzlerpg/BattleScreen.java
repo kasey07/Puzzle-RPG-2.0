@@ -141,7 +141,7 @@ public class BattleScreen
      */
     public void onTouchDown(float x, float y)
     {
-        processTouch(x, y);
+        processTouch(y, x);
 
     }
 
@@ -185,9 +185,9 @@ public class BattleScreen
 
                 puzzle.switchGems(firstClick, new Location(xValue, yValue));
 
-                // puzzle.remove(new Location(xValue, yValue));
-                // puzzle
-                // .remove(new Location(firstClick.getX(), firstClick.getY()));
+                puzzle.remove(new Location(xValue, yValue));
+                puzzle
+                    .remove(new Location(firstClick.getX(), firstClick.getY()));
                 firstClick = null;
 
             }

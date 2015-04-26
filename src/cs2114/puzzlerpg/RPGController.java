@@ -1,19 +1,22 @@
 package cs2114.puzzlerpg;
 
+import cs2114.puzzlerpg.monsters.Monsters;
+import java.util.Stack;
 import cs2114.puzzlerpg.playerclasses.Player;
 
 ;
 
 // -------------------------------------------------------------------------
 /**
- *  Control RPG elements of the game. Keeps track of monster
+ * Control RPG elements of the game. Keeps track of monster
  *
- *  @author Kasey Johnson
- *  @version Apr 26, 2015
+ * @author Kasey Johnson
+ * @version Apr 26, 2015
  */
 public class RPGController
 {
-    private Player mainChar;
+    private Player          mainChar;
+    private Stack<Monsters> monsters;
 
 
     // ----------------------------------------------------------
@@ -25,7 +28,18 @@ public class RPGController
      */
     public RPGController(Player player)
     {
+
         this.mainChar = player;
+        this.addMonsters();
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Adds 10 Monsters to the
+     */
+    public void addMonsters()
+    {
     }
 
 
