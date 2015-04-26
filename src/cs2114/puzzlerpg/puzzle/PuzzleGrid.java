@@ -129,6 +129,48 @@ public class PuzzleGrid
         }
     }
 
+    /**
+     * Get the total amount of adjacent gems
+     * of the same type.
+     * @param loc The start location.
+     * @return Amount of adjacent cells with same gem type.
+     */
+    public int countAdjacent(Location loc)
+    {
+        return countAdjacentHelper(loc, getType(loc), new LinkedList<Location>());
+    }
+
+    /**
+     * Get the total amount of adjacent gems
+     * of the same type.
+     * @param loc The current location to spread from.
+     * @param type The type to search for.
+     * @param visited A list of locations to ignore.
+     * @return Amount of adjacent cells with same gem type.
+     */
+    private int countAdjacentHelper(Location loc, GemCellType type, LinkedList<Location> visited)
+    {
+        if (getType(loc) == null || visited.contains(loc))
+        {
+            return 0;
+        }
+        else if (!getType(loc).equals(type))
+        {
+            return 0;
+        }
+        else
+        {
+            int x = loc.getX();
+            int y = loc.getY();
+            visited.insert(loc);
+            return countAdjacentHelper(new Location(x + 1, y), type, visited)
+                + countAdjacentHelper(new Location(x - 1, y), type, visited)
+                + countAdjacentHelper(new Location(x, y + 1), type, visited)
+                + countAdjacentHelper(new Location(x, y - 1), type, visited)
+                + 1;
+        }
+    }
+
 
     /**
      * Get the size of the gem grid.
