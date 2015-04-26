@@ -68,13 +68,14 @@ public class Player
     public void reduceHealth(int damageTaken)
     {
 
-        if (health - damageTaken < 0)
+        int actualDamage = Math.max(0, damageTaken - defense);
+        if (health - actualDamage < 0)
         {
             this.health = 0;
         }
         else
         {
-            this.health -= damageTaken;
+            this.health -= actualDamage;
         }
     }
 

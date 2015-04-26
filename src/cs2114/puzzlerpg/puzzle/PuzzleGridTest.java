@@ -73,4 +73,13 @@ public class PuzzleGridTest
         assertEquals(GemCellType.FIRE, puzzle.getType(new Location(2, 2)));
     }
 
+    /**
+     * Test the countAdjacent method.
+     */
+    public void testCountAdjacent()
+    {
+        assertEquals(6, puzzle.countAdjacent(new Location(0, 0)));
+        assertEquals(1, puzzle.countAdjacent(new Location(2, 2)));
+    }
+
 }
