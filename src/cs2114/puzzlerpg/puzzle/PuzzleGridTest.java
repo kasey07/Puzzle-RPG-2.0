@@ -38,6 +38,7 @@ public class PuzzleGridTest
     public void testGetType()
     {
         assertEquals(GemCellType.HEAL, puzzle.getType(new Location(1, 1)));
+        assertEquals(GemCellType.EARTH, puzzle.getType(new Location(2, 2)));
     }
 
 
@@ -55,9 +56,9 @@ public class PuzzleGridTest
      */
     public void testSwitchGems()
     {
-        puzzle.switchGems(new Location(0, 1), new Location(1, 1));
-        assertEquals(GemCellType.HEAL, puzzle.getType(new Location(0, 1)));
-        assertEquals(GemCellType.WATER, puzzle.getType(new Location(1, 1)));
+        puzzle.switchGems(new Location(0, 1), new Location(0, 2));
+        assertEquals(GemCellType.HEAL, puzzle.getType(new Location(0, 2)));
+        assertEquals(GemCellType.WATER, puzzle.getType(new Location(0, 1)));
     }
 
 
@@ -70,8 +71,9 @@ public class PuzzleGridTest
 
         assertEquals(GemCellType.FIRE, puzzle.getType(new Location(0, 2)));
         assertEquals(GemCellType.HEAL, puzzle.getType(new Location(1, 2)));
-        assertEquals(GemCellType.FIRE, puzzle.getType(new Location(2, 2)));
+        assertEquals(GemCellType.HEAL, puzzle.getType(new Location(2, 2)));
     }
+
 
     /**
      * Test the countAdjacent method.
