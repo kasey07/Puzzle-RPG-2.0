@@ -213,20 +213,17 @@ public class BattleScreen
         {
             for (int j = 0; j < puzzle.size(); j++)
             {
+
                 GemShape oldGem = gem[i][j];
                 if (oldGem.getType() != puzzle.getType(new Location(i, j)))
                 {
-                    oldGem.animate(400).alpha(0).rotation(720)
-                        .removeWhenComplete().play();
-                    gem[i][j] =
-                        new GemShape(
-                            oldGem.getX(),
-                            oldGem.getY(),
-                            oldGem.getX() + oldGem.getWidth(),
-                            oldGem.getY() + oldGem.getHeight(),
-                            oldGem.getType());
+                    oldGem.animate(400).rotation(720).play();
+                    gem[i][j] = oldGem;
+
                 }
-                gem[i][j].getImage();
+
+                gem[i][j].setImage(puzzle.getType(new Location(i, j))
+                    .getImage());
             }
 
         }
