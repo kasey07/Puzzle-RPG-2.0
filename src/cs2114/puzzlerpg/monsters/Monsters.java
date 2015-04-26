@@ -19,6 +19,7 @@ public class Monsters
     private Random      rand;
     private int         attackTurns;
     private int         defaultTurns;
+    private String      pic;
 
 
     // attack defense name health element type difficulty
@@ -39,6 +40,8 @@ public class Monsters
      *            name of monster
      * @param turns
      *            turns between attacks
+     * @param pic
+     *            String of file name containing image of monster
      */
     public Monsters(
         int health,
@@ -46,7 +49,8 @@ public class Monsters
         int defense,
         int difficulty,
         String name,
-        int turns)
+        int turns,
+        String pic)
     {
         this.health = health;
         this.type = type;
@@ -56,8 +60,9 @@ public class Monsters
         rand = new Random();
         this.attackTurns = turns;
         this.defaultTurns = turns; // remains unedited to update attack turns
-
+        this.pic = pic;
     }
+
 
     // ----------------------------------------------------------
     /**
@@ -138,6 +143,29 @@ public class Monsters
     public void setAttackTurns(int newTurns)
     {
         attackTurns = newTurns;
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * REturns number of turns between attacks for monster
+     *
+     * @return default number of turns for monster
+     */
+    public int getDefaultTurns()
+    {
+        return defaultTurns;
+    }
+
+
+    /**
+     * Get the image name of monster
+     *
+     * @return file name of mosnters picture
+     */
+    public String getImage()
+    {
+        return pic;
     }
 
 }

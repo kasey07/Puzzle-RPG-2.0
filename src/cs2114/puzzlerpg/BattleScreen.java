@@ -54,6 +54,7 @@ public class BattleScreen
 
         puzzle = new PuzzleGrid(GRID_SIZE);
         puzzle.addObserver(this);
+        ctrl.addObserver(this);
         this.length =
             (Math.min(shapeView.getHeight(), shapeView.getWidth()) / GRID_SIZE);
         this.gem = new GemShape[GRID_SIZE][GRID_SIZE];
@@ -125,19 +126,9 @@ public class BattleScreen
      * Place a description of your method here.
      *
      * @param x
+     *            the x pixel location clicked
      * @param y
-     */
-    public void onTouchMove(float x, float y)
-    {
-
-    }
-
-
-    /**
-     * Place a description of your method here.
-     *
-     * @param x
-     * @param y
+     *            the y pixel location clicked
      */
     public void onTouchDown(float x, float y)
     {
@@ -188,9 +179,11 @@ public class BattleScreen
 
                 puzzle.switchGems(firstClick, new Location(xValue, yValue));
 
-                // puzzle.remove(new Location(xValue, yValue));
+                int comboNumber = puzzle.remove(new Location(xValue, yValue));
+
                 // puzzle
                 // .remove(new Location(firstClick.getX(), firstClick.getY()));
+                ctrl.update(comboNumber);
                 firstClick = null;
 
             }
@@ -215,7 +208,7 @@ public class BattleScreen
 
                 gem[i][j].setImage(puzzle.getType(new Location(i, j))
                     .getImage());
-                // animation?
+                // update player health field and monster move field
 
             }
 
