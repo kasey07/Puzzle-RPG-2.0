@@ -159,28 +159,35 @@ public class LinkedList<E>
      */
     public E delete(int index)
     {
-        if (index == 0)
+        Node<E> currentNode = head;
+        // Get the node preceding the one we want to remove.
+        for (int i = 0; i < index - 1; i++) //Note the - 1
         {
-            Node<E> temp = head;
-            head = null;
-            return temp.data();
+            // Blow up, list too short.
+            if (currentNode == null)
+            {
+                return null;
+            }
+            currentNode = currentNode.getNext();
         }
+        // Blow up, list too short.
+        if (currentNode.getNext() == null)
+        {
+            return null;
+        }
+        // If removing the tail.
+        else if (currentNode.getNext().getNext() == null)
+        {
+            E temp = currentNode.getNext().data();
+            currentNode.setNext(null);
+            return temp;
+        }
+        // If removing a middle node.
         else
         {
-            Node<E> lastNode = null;
-            Node<E> currentNode = head;
-            for (int i = 0; i < index; i++)
-            {
-                if (currentNode == null)
-                {
-                    // TODO List too short, blow up.
-
-                }
-                lastNode = currentNode;
-                currentNode = currentNode.getNext();
-            }
-            lastNode.setNext(currentNode.getNext());
-            return currentNode.data();
+            E temp = currentNode.getNext().data();
+            currentNode.setNext(currentNode.getNext().getNext());
+            return temp;
         }
     }
 
