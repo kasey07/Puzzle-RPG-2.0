@@ -105,16 +105,16 @@ public class BattleScreen
         }
         player =
 
-        new RectangleShape(length * 6, length * 6, (length * (6)), length * 6);
+        new RectangleShape(length * 3, length * 3, (length * (3)), length * 3);
 
         player.setColor(Color.beige);
         player.setFillColor(Color.black);
         monster =
             new RectangleShape(
-                length * 0,
-                length * 6,
-                (length * (0)),
-                length * 6);
+                length * 1,
+                length * 1,
+                (length * (1)),
+                length * 1);
         monster.setColor(Color.black);
         monster.setFillColor(Color.black);
         shapeView.add(player);
