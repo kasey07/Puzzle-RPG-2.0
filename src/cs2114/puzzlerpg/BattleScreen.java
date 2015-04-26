@@ -104,8 +104,12 @@ public class BattleScreen
             }
         }
         player =
-            new RectangleShape(length * 6, length * 2, (length * (6)), length
-                * (2 + 1));
+
+            new RectangleShape(
+                length * 8,
+                length * 8,
+                (length * (8)),
+                length * (8));
 
         player.setColor(Color.beige);
         player.setFillColor(Color.black);
@@ -176,18 +180,24 @@ public class BattleScreen
 
     }
 
+
     /**
      * Update view for monster.
-     * @param monsters The monster to display data on in views.
+     *
+     * @param monsters
+     *            The monster to display data on in views.
      */
     public void changeWasObserved(Monsters monsters)
     {
         monsterTurns.setText(monsters.getDefaultTurns());
     }
 
+
     /**
      * Update view for player data.
-     * @param character The player to display data on in views.
+     *
+     * @param character
+     *            The player to display data on in views.
      */
     public void changeWasObserved(Player character)
     {
@@ -210,13 +220,15 @@ public class BattleScreen
                 GemShape oldGem = gem[i][j];
                 if (oldGem.getType() != puzzle.getType(new Location(i, j)))
                 {
-                    oldGem.animate(400).alpha(0).rotation(720).removeWhenComplete().play();
-                    gem[i][j] = new GemShape(
-                        oldGem.getX(),
-                        oldGem.getY(),
-                        oldGem.getWidth(),
-                        oldGem.getHeight(),
-                        oldGem.getType());
+                    oldGem.animate(400).alpha(0).rotation(720)
+                        .removeWhenComplete().play();
+                    gem[i][j] =
+                        new GemShape(
+                            oldGem.getX(),
+                            oldGem.getY(),
+                            oldGem.getWidth(),
+                            oldGem.getHeight(),
+                            oldGem.getType());
                 }
                 gem[i][j].getImage();
             }
