@@ -108,8 +108,8 @@ public class BattleScreen
             (Math.min(shapeView.getHeight(), shapeView.getWidth())) / 8;
         player =
             new RectangleShape(
-                length * 7,
-                length * 7,
+                length * 8,
+                length * 8,
                 (length * (8)),
                 length * (8));
 
@@ -182,18 +182,24 @@ public class BattleScreen
 
     }
 
+
     /**
      * Update view for monster.
-     * @param monsters The monster to display data on in views.
+     *
+     * @param monsters
+     *            The monster to display data on in views.
      */
     public void changeWasObserved(Monsters monsters)
     {
         monsterTurns.setText(monsters.getDefaultTurns());
     }
 
+
     /**
      * Update view for player data.
-     * @param character The player to display data on in views.
+     *
+     * @param character
+     *            The player to display data on in views.
      */
     public void changeWasObserved(Player character)
     {
