@@ -3,7 +3,7 @@ package cs2114.puzzlerpg;
 import cs2114.puzzlerpg.puzzle.GemCellType;
 import cs2114.puzzlerpg.monsters.Monsters;
 import java.util.Stack;
-import cs2114.puzzlerpg.playerclasses.Player;
+import cs2114.puzzlerpg.playerclasses.*;
 
 ;
 
@@ -39,6 +39,30 @@ public class RPGController
 
     // ----------------------------------------------------------
     /**
+     * returns the image of the characters
+     *
+     * @return image of character
+     */
+    public String getImage()
+    {
+        if (mainChar instanceof Warrior)
+        {
+            return "warrior.png";
+        }
+        if (mainChar instanceof Mage)
+        {
+            return "mage.png";
+        }
+        else
+        {
+            return "rouge.png";
+        }
+
+    }
+
+
+    // ----------------------------------------------------------
+    /**
      * Adds 10 Monsters to the
      */
     public void addMonsters()
@@ -60,22 +84,15 @@ public class RPGController
             "Fire Dragon",
             4,
             "fireDragon.png"));
-        monsters.push(new Monsters(
-            5000,
-            GemCellType.FIRE,
-            700,
-            3,
-            "Lava",
-            4,
-            "lava.png"));
+
         monsters.push(new Monsters(
             7000,
             GemCellType.WATER,
             700,
             4,
-            "FishMan",
+            "Water Dragon",
             4,
-            "fish.png"));
+            "waterDragon.png"));
         monsters.push(new Monsters(
             15000,
             GemCellType.WATER,
@@ -83,7 +100,7 @@ public class RPGController
             5,
             "Drowner",
             3,
-            "drowner.png"));
+            "drowner.gif"));
         monsters.push(new Monsters(
             50000,
             GemCellType.EARTH,
@@ -97,25 +114,25 @@ public class RPGController
             GemCellType.FIRE,
             900,
             7,
-            "FireTroll",
+            "Goblin",
             7,
-            "fireTroll.png"));
+            "goblin.png"));
         monsters.push(new Monsters(
             10000,
             GemCellType.WATER,
             800,
             8,
-            "Imp",
+            "water beast",
             6,
-            "imp.png"));
+            "waterbeast.gif"));
         monsters.push(new Monsters(
             20000,
             GemCellType.EARTH,
             700,
             9,
-            "Goblin",
+            "Skeleton",
             7,
-            "goblin.png"));
+            "skeleton.png"));
         monsters.push(new Monsters(
             40000,
             GemCellType.FIRE,
@@ -123,7 +140,7 @@ public class RPGController
             10,
             "Dragon King",
             5,
-            "dragonking.png"));
+            "dragontank.gif"));
 
     }
 

@@ -41,6 +41,7 @@ public class BattleScreen
     private TextView         monsterTurns;
     private ShapeView        player;
     private ShapeView        monster;
+    private TextView         monsterHealth;
 
 
     // ----------------------------------------------------------
@@ -107,16 +108,15 @@ public class BattleScreen
             }
         }
 
+        monsterTurns.setText(ctrl.getMonster().attackTurns() + "");
+        monsterHealth.setText("" + ctrl.getMonster().getHealth());
         playerShape =
+            new RectangleShape(0, 0, player.getWidth(), player.getHeight());
 
-        new RectangleShape(0, 0, player.getWidth(), player.getHeight());
-
-        playerShape.setColor(Color.beige);
-        playerShape.setFillColor(Color.black);
+        playerShape.setImage(ctrl.getImage());
         monsterShape =
-            new RectangleShape(0, 0, monster.getWidth(), monster.getHeight());
-        monsterShape.setColor(Color.black);
-        monsterShape.setFillColor(Color.black);
+            new RectangleShape(0, 0, player.getWidth(), monster.getHeight());
+        monsterShape.setImage(ctrl.getMonster().getImage());
         player.add(playerShape);
         monster.add(monsterShape);
 
@@ -186,9 +186,11 @@ public class BattleScreen
      */
     public void changeWasObserved(RPGController control)
     {
-        monsterTurns.setText(ctrl.getMonster().attackTurns() + "turns");
+        monsterTurns.setText(ctrl.getMonster().attackTurns() + "");
         charHealth.setText(ctrl.getPlayer().getHealth() + "/"
             + ctrl.getPlayer().getMaxHealth());
+        monsterShape.setImage(ctrl.getMonster().getImage());
+        monsterHealth.setText("" + ctrl.getMonster().getHealth());
     }
 
 
