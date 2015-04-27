@@ -1,7 +1,7 @@
 package cs2114.puzzlerpg.monsters;
 
 import cs2114.puzzlerpg.puzzle.GemCellType;
-import java.util.Random;
+import sofia.util.Random;
 
 // -------------------------------------------------------------------------
 /**
@@ -118,7 +118,7 @@ public class Monsters
     public int attack()
     {
 
-        return rand.nextInt(10) * difficulty;
+        return rand.nextInt(10,20) * difficulty;
 
     }
 
@@ -179,7 +179,7 @@ public class Monsters
     public void reduceHealth(int damageTaken)
     {
 
-        int actualDamage = Math.max(0, damageTaken - defense / 2);
+        int actualDamage = Math.max(0, damageTaken - defense / 3);
         if (health - actualDamage < 0)
         {
             this.health = 0;
