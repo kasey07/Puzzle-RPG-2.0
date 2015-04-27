@@ -68,7 +68,7 @@ public class Player
     public void reduceHealth(int damageTaken)
     {
 
-        int actualDamage = Math.max(0, damageTaken - defense / 2);
+        int actualDamage = Math.max(0, damageTaken);
         if (health - actualDamage < 0)
         {
             this.health = 0;

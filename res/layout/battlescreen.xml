@@ -8,7 +8,8 @@
     <sofia.graphics.ShapeView
         android:id="@+id/shapeView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/charHealth" />
 
     <TextView
         android:id="@+id/charName"
@@ -28,13 +29,41 @@
         android:layout_marginRight="27dp"
         android:text="5" />
 
+    <sofia.graphics.ShapeView
+        android:id="@+id/player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/charName"
+        android:layout_alignLeft="@+id/charName"
+        android:layout_alignRight="@+id/charHealth"
+        android:layout_below="@+id/monsterName" />
+
     <TextView
         android:id="@+id/charHealth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/charName"
-        android:layout_alignLeft="@+id/charName"
-        android:layout_marginBottom="102dp"
+        android:layout_marginBottom="101dp"
+        android:layout_toRightOf="@+id/charName"
         android:text="health" />
+
+    <sofia.graphics.ShapeView
+        android:id="@+id/monster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/monsterTurns"
+        android:layout_alignLeft="@+id/monsterName"
+        android:layout_alignRight="@+id/monsterTurns"
+        android:layout_below="@+id/monsterName" />
+
+    <TextView
+        android:id="@+id/monsterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/charHealth"
+        android:layout_alignBottom="@+id/charHealth"
+        android:layout_marginRight="18dp"
+        android:layout_toLeftOf="@+id/monsterTurns"
+        android:text="TextView" />
 
 </RelativeLayout>

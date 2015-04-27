@@ -1,5 +1,6 @@
 package cs2114.puzzlerpg;
 
+import android.view.View;
 import cs2114.puzzlerpg.monsters.Monsters;
 import cs2114.puzzlerpg.playerclasses.Player;
 import sofia.graphics.Color;
@@ -32,12 +33,14 @@ public class BattleScreen
     private ShapeView        shapeView;
     private GemShape[][]     gem;
     private static final int GRID_SIZE = 4;
-    private RectangleShape   player;
-    private RectangleShape   monster;
+    private RectangleShape   playerShape;
+    private RectangleShape   monsterShape;
     private RPGController    ctrl;
     private TextView         charName;
     private TextView         charHealth;
     private TextView         monsterTurns;
+    private ShapeView        player;
+    private ShapeView        monster;
 
 
     // ----------------------------------------------------------
@@ -103,22 +106,20 @@ public class BattleScreen
 
             }
         }
-        player =
 
-        new RectangleShape(length, length * 2, (length), length * 2);
+        playerShape =
 
-        player.setColor(Color.beige);
-        player.setFillColor(Color.black);
-        monster =
-            new RectangleShape(
-                length * 1,
-                length * 1,
-                (length * (1)),
-                length * 1);
-        monster.setColor(Color.black);
-        monster.setFillColor(Color.black);
-        shapeView.add(player);
-        shapeView.add(monster);
+        new RectangleShape(0, 0, player.getWidth(), player.getHeight());
+
+        playerShape.setColor(Color.beige);
+        playerShape.setFillColor(Color.black);
+        monsterShape =
+            new RectangleShape(0, 0, monster.getWidth(), monster.getHeight());
+        monsterShape.setColor(Color.black);
+        monsterShape.setFillColor(Color.black);
+        player.add(playerShape);
+        monster.add(monsterShape);
+
     }
 
 
@@ -180,20 +181,23 @@ public class BattleScreen
     /**
      * Update view for monster.
      *
-     * @param control The rpg controller.
+     * @param control
+     *            The rpg controller.
      */
     public void changeWasObserved(RPGController control)
     {
-        monsterTurns.setText(ctrl.getMonster().getDefaultTurns());
-        charHealth.setText(ctrl.getPlayer().getHealth());
+        monsterTurns.setText(ctrl.getMonster().attackTurns() + "turns");
+        charHealth.setText(ctrl.getPlayer().getHealth() + "/"
+            + ctrl.getPlayer().getMaxHealth());
     }
 
 
     // ----------------------------------------------------------
     /**
-     * Place a description of your method here.
+     * updates the screen
      *
      * @param puzzle
+     *            the puzzle
      */
     public void changeWasObserved(PuzzleGrid puzzle)
     {
@@ -202,16 +206,18 @@ public class BattleScreen
             for (int j = 0; j < puzzle.size(); j++)
             {
 
-                GemShape oldGem = gem[i][j];
-                if (oldGem.getType() != puzzle.getType(new Location(i, j)))
-                {
-                    oldGem.animate(400).rotation(720).play();
-                    gem[i][j] = oldGem;
+                // GemShape oldGem = gem[i][j];
+                // if (oldGem.getType() != puzzle.getType(new Location(i, j)))
+                // {
+                // oldGem.animate(400).rotation(720).play();
+                // gem[i][j] = oldGem;
+                // shapeView.add(gem[i][j]);
 
-                }
+                // }
 
                 gem[i][j].setImage(puzzle.getType(new Location(i, j))
                     .getImage());
+
             }
 
         }

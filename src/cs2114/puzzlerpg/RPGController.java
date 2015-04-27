@@ -139,6 +139,7 @@ public class RPGController
         return mainChar;
     }
 
+
     /**
      * Get the current monster.
      *
@@ -181,19 +182,18 @@ public class RPGController
                 // remove dead monster from stack
                 monsters.pop();
             }
-            else
-            {
-                // if still alive update counter and process attack
-                mon.setAttackTurns(mon.attackTurns() - 1);
-                // see if attack turns is 0
-                if (mon.attackTurns() == 0)
-                {
-                    mainChar.reduceHealth(mon.attack());
-                    mon.setAttackTurns(mon.getDefaultTurns());
-                }
 
+            // if still alive update counter and process attack
+            mon.setAttackTurns(mon.attackTurns() - 1);
+            // see if attack turns is 0
+            if (mon.attackTurns() == 0)
+            {
+                mainChar.reduceHealth(mon.attack());
+                mon.setAttackTurns(mon.getDefaultTurns());
             }
 
         }
+        notifyObservers();
     }
+
 }
