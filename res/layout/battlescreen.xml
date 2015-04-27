@@ -5,72 +5,76 @@
     android:gravity="bottom"
     tools:context=".MenuScreen" >
 
-    <sofia.graphics.ShapeView
-        android:id="@+id/shapeView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/charHealth" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp" />
-
-    <TextView
-        android:id="@+id/charName"
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="22dp"
-        android:text="name" />
+        android:layout_alignParentRight="true" >
 
-    <TextView
-        android:id="@+id/monsterTurns"
+        <sofia.graphics.ShapeView
+            android:id="@+id/monster"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_weight="0.55" />
+
+        <ImageButton
+            android:id="@+id/special"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.55"
+            android:src="@android:drawable/btn_star" />
+
+        <sofia.graphics.ShapeView
+            android:id="@+id/player"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.62" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="27dp"
-        android:text="5" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="51dp"
+        android:orientation="vertical" >
+    </LinearLayout>
 
     <sofia.graphics.ShapeView
-        android:id="@+id/player"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/charName"
-        android:layout_alignLeft="@+id/charName"
-        android:layout_alignRight="@+id/charHealth"
-        android:layout_alignTop="@+id/monster" />
-
-    <TextView
-        android:id="@+id/charHealth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/charName"
-        android:layout_marginBottom="101dp"
-        android:layout_toRightOf="@+id/charName"
-        android:text="health" />
-
-    <sofia.graphics.ShapeView
-        android:id="@+id/monster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/monsterTurns"
-        android:layout_alignLeft="@+id/monsterName"
-        android:layout_alignRight="@+id/monsterTurns"
-        android:layout_below="@+id/monsterHealth" />
+        android:id="@+id/shapeView"
+        android:layout_width="323dp"
+        android:layout_height="347dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="0.20" />
 
     <TextView
         android:id="@+id/monsterHealth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/charHealth"
-        android:layout_alignBottom="@+id/charHealth"
-        android:layout_marginRight="18dp"
-        android:layout_toLeftOf="@+id/monsterTurns"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/shapeView"
         android:text="40000" />
 
-   
+    <TextView
+        android:id="@+id/charHealth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/shapeView"
+        android:text="health" />
+
+    <TextView
+        android:id="@+id/specialText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/charHealth"
+        android:layout_alignBottom="@+id/charHealth"
+        android:layout_centerHorizontal="true"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>

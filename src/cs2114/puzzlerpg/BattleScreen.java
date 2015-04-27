@@ -1,8 +1,7 @@
 package cs2114.puzzlerpg;
 
-import android.view.View;
-import cs2114.puzzlerpg.monsters.Monsters;
-import cs2114.puzzlerpg.playerclasses.Player;
+import android.widget.ImageButton;
+import cs2114.puzzlerpg.puzzle.GemCellType;
 import sofia.graphics.Color;
 import android.widget.TextView;
 import cs2114.puzzlerpg.playerclasses.Rouge;
@@ -42,6 +41,8 @@ public class BattleScreen
     private ShapeView        player;
     private ShapeView        monster;
     private TextView         monsterHealth;
+    private ImageButton      special;
+    private TextView         specialText;
 
 
     // ----------------------------------------------------------
@@ -108,15 +109,19 @@ public class BattleScreen
             }
         }
 
-        monsterTurns.setText(ctrl.getMonster().attackTurns() + "");
-        monsterHealth.setText("" + ctrl.getMonster().getHealth());
+        monsterHealth.setText(ctrl.getMonster().attackTurns() + "/"
+            + ctrl.getMonster().getHealth());
+        player.bringToFront();
+        monster.bringToFront();
+
         playerShape =
             new RectangleShape(0, 0, player.getWidth(), player.getHeight());
 
         playerShape.setImage(ctrl.getImage());
         monsterShape =
-            new RectangleShape(0, 0, player.getWidth(), monster.getHeight());
+            new RectangleShape(0, 0, player.getWidth(), player.getHeight());
         monsterShape.setImage(ctrl.getMonster().getImage());
+
         player.add(playerShape);
         monster.add(monsterShape);
 
@@ -170,9 +175,8 @@ public class BattleScreen
             int yValue = getValue(y);
             int xValue = getValue(x);
 
-            ctrl.update(
-                puzzle.remove(new Location(xValue, yValue)),
-                puzzle.getType(new Location(xValue, yValue)));
+            GemCellType type = puzzle.getType(new Location(xValue, yValue));
+            ctrl.update(puzzle.remove(new Location(xValue, yValue)), type);
         }
 
     }
@@ -186,11 +190,32 @@ public class BattleScreen
      */
     public void changeWasObserved(RPGController control)
     {
-        monsterTurns.setText(ctrl.getMonster().attackTurns() + "");
+
         charHealth.setText(ctrl.getPlayer().getHealth() + "/"
             + ctrl.getPlayer().getMaxHealth());
         monsterShape.setImage(ctrl.getMonster().getImage());
-        monsterHealth.setText("" + ctrl.getMonster().getHealth());
+        monsterHealth.setText(ctrl.getMonster().attackTurns() + "/"
+            + ctrl.getMonster().getHealth());
+
+        if (ctrl.getPlayer().getCounter() <= ctrl.getPlayer().getTurns())
+        {
+            specialText.setText("Activate Special");
+        }
+        else
+        {
+            specialText.setText(ctrl.getPlayer().getTurns()
+                - ctrl.getPlayer().getCounter() + "left");
+        }
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * When special is clicked activate special skill
+     */
+    public void specialClicked()
+    {
+        ctrl.activateSpecialAbility();
     }
 
 

@@ -1,5 +1,7 @@
 package cs2114.puzzlerpg;
 
+import cs2114.puzzlerpg.playerclasses.Mage;
+import cs2114.puzzlerpg.playerclasses.Warrior;
 import cs2114.puzzlerpg.puzzle.GemCellType;
 import cs2114.puzzlerpg.monsters.Monsters;
 import java.util.Stack;
@@ -63,19 +65,71 @@ public class RPGController
 
     // ----------------------------------------------------------
     /**
-     * Adds 10 Monsters to the
+     * Adds 10 Monsters to the monsters stack
      */
     public void addMonsters()
     {
 
         monsters.push(new Monsters(
+            40000,
+            GemCellType.FIRE,
             1000,
-            GemCellType.EARTH,
-            500,
-            1,
-            "Troll",
+            10,
+            "Dragon King",
             5,
-            "Troll.png"));
+            "dragontank.gif"));
+        monsters.push(new Monsters(
+            20000,
+            GemCellType.EARTH,
+            700,
+            9,
+            "Skeleton",
+            7,
+            "skeleton.png"));
+        monsters.push(new Monsters(
+            10000,
+            GemCellType.WATER,
+            800,
+            8,
+            "water beast",
+            6,
+            "waterbeast.gif"));
+
+        monsters.push(new Monsters(
+            20000,
+            GemCellType.FIRE,
+            900,
+            7,
+            "Goblin",
+            7,
+            "goblin.png"));
+
+        monsters.push(new Monsters(
+            50000,
+            GemCellType.EARTH,
+            800,
+            6,
+            "RatKing",
+            5,
+            "ratking.png"));
+
+        monsters.push(new Monsters(
+            15000,
+            GemCellType.WATER,
+            400,
+            5,
+            "Drowner",
+            3,
+            "drowner.gif"));
+        monsters.push(new Monsters(
+            7000,
+            GemCellType.WATER,
+            700,
+            4,
+            "Water Dragon",
+            4,
+            "waterDragon.png"));
+
         monsters.push(new Monsters(
             10000,
             GemCellType.FIRE,
@@ -86,61 +140,13 @@ public class RPGController
             "fireDragon.png"));
 
         monsters.push(new Monsters(
-            7000,
-            GemCellType.WATER,
-            700,
-            4,
-            "Water Dragon",
-            4,
-            "waterDragon.png"));
-        monsters.push(new Monsters(
-            15000,
-            GemCellType.WATER,
-            400,
-            5,
-            "Drowner",
-            3,
-            "drowner.gif"));
-        monsters.push(new Monsters(
-            50000,
-            GemCellType.EARTH,
-            800,
-            6,
-            "RatKing",
-            5,
-            "ratking.png"));
-        monsters.push(new Monsters(
-            20000,
-            GemCellType.FIRE,
-            900,
-            7,
-            "Goblin",
-            7,
-            "goblin.png"));
-        monsters.push(new Monsters(
-            10000,
-            GemCellType.WATER,
-            800,
-            8,
-            "water beast",
-            6,
-            "waterbeast.gif"));
-        monsters.push(new Monsters(
-            20000,
-            GemCellType.EARTH,
-            700,
-            9,
-            "Skeleton",
-            7,
-            "skeleton.png"));
-        monsters.push(new Monsters(
-            40000,
-            GemCellType.FIRE,
             1000,
-            10,
-            "Dragon King",
+            GemCellType.EARTH,
+            500,
+            1,
+            "Troll",
             5,
-            "dragontank.gif"));
+            "Troll.png"));
 
     }
 
@@ -200,17 +206,41 @@ public class RPGController
                 monsters.pop();
             }
 
-            // if still alive update counter and process attack
-            mon.setAttackTurns(mon.attackTurns() - 1);
-            // see if attack turns is 0
-            if (mon.attackTurns() == 0)
-            {
-                mainChar.reduceHealth(mon.attack());
-                mon.setAttackTurns(mon.getDefaultTurns());
-            }
+        }
+        mon.setAttackTurns(mon.attackTurns() - 1);
 
+        if (mon.attackTurns() == 0)
+        {
+            mainChar.reduceHealth(mon.attack());
+            mon.setAttackTurns(mon.getDefaultTurns());
         }
         notifyObservers();
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Activates Special Ability of Player
+     */
+    public void activateSpecialAbility()
+    {
+
+        if (mainChar instanceof Warrior)
+        {
+            ((Warrior)mainChar).specialAbility();
+        }
+        if (mainChar instanceof Mage)
+        {
+            ((Mage)mainChar).specialAbility();
+
+        }
+        else
+        {
+            monsters.peek().setAttackTurns(
+                ((Rouge)mainChar).specialAbility()
+                    + monsters.peek().attackTurns());
+
+        }
     }
 
 }

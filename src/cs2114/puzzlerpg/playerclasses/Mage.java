@@ -43,7 +43,8 @@ public class Mage
 
     // ----------------------------------------------------------
     /**
-     * Place a description of your method here.
+     * Gets the attack of the mage if special is activated
+     * next attack does 2x the damage
      *
      * @return the attack of the player
      */

@@ -76,6 +76,32 @@ public class PuzzleGridTest
 
 
     /**
+     * Test Remove When it should remove
+     */
+    public void testRemove3()
+    {
+        puzzle = new PuzzleGrid(2);
+
+        puzzle.setType(new Location(0, 0), GemCellType.WATER);
+        puzzle.setType(new Location(1, 0), GemCellType.HEAL);
+        puzzle.setType(new Location(0, 1), GemCellType.WATER);
+        puzzle.setType(new Location(1, 1), GemCellType.WATER);
+        assertEquals(3, puzzle.remove(new Location(0, 0)));
+
+    }
+
+
+    /**
+     * Test Remove When it should remove
+     */
+    public void testRemove2()
+    {
+        assertEquals(6, puzzle.remove(new Location(0, 1)));
+
+    }
+
+
+    /**
      * Test the countAdjacent method.
      */
     public void testCountAdjacent()
