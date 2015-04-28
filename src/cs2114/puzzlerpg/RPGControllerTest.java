@@ -65,7 +65,7 @@ public class RPGControllerTest
      */
     public void testGetMonster()
     {
-        assertEquals("troll", ctrl.getMonster().getName());
+        assertEquals("Troll", ctrl.getMonster().getName());
     }
 
 
@@ -85,7 +85,7 @@ public class RPGControllerTest
     public void testUpdate2()
     {
         ctrl.update(3, GemCellType.FIRE);
-        assertEquals(1000, ctrl.getMonster().getHealth());
+        assertEquals(566, ctrl.getMonster().getHealth());
 
     }
 
@@ -96,7 +96,7 @@ public class RPGControllerTest
     public void testUpdate3()
     {
         ctrl.update(3, GemCellType.WATER);
-        assertEquals(1000, ctrl.getMonster().getHealth());
+        assertEquals(666, ctrl.getMonster().getHealth());
 
     }
 
@@ -119,8 +119,9 @@ public class RPGControllerTest
     public void testUpdate5()
     {
         ctrl.getMonster().setAttackTurns(1);
+        Random.setNextInts(10);
         ctrl.update(5, GemCellType.FIRE);
-        assertEquals(9000, ctrl.getPlayer().getHealth());
+        assertEquals(9990, ctrl.getPlayer().getHealth());
         assertEquals(5, ctrl.getMonster().attackTurns());
     }
 

@@ -27,7 +27,7 @@ public class PlayerTest
     public void testReduceHealth()
     {
         character.reduceHealth(100);
-        assertEquals(9000, character.getHealth());
+        assertEquals(9900, character.getHealth());
     }
 
 
@@ -69,7 +69,7 @@ public class PlayerTest
     {
         character.reduceHealth(200);
         character.addHealth(100);
-        assertEquals(9000, character.getHealth());
+        assertEquals(9900, character.getHealth());
     }
 
 
@@ -100,7 +100,7 @@ public class PlayerTest
      */
     public void testAttack2()
     {
-        assertEquals(666, character.getAttack(4));
+        assertEquals(583, character.getAttack(4));
     }
 
 
@@ -110,7 +110,7 @@ public class PlayerTest
     public void testSetCounter()
     {
         character.setCounter(30);
-        assertEquals(583, character.getCounter());
+        assertEquals(30, character.getCounter());
     }
 
 
@@ -120,7 +120,7 @@ public class PlayerTest
     public void testSpecialTurnsLeft()
     {
         character.setCounter(1);
-        assertEquals(19, character.getCounter());
+        assertEquals(19, character.specialTurnsLeft());
     }
 
 }

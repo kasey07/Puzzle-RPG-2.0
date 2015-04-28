@@ -68,7 +68,7 @@ public class Player
     public void reduceHealth(int damageTaken)
     {
 
-        int actualDamage = Math.max(0, damageTaken - defense / 3);
+        int actualDamage = Math.max(0, damageTaken);
         if (health - actualDamage < 0)
         {
             this.health = 0;
@@ -121,6 +121,11 @@ public class Player
      */
     public int getAttack(int combo)
     {
+        if (combo < 3)
+        {
+            return 0;
+
+        }
         if (combo >= 5)
         {
             return attack + attack / 3;

@@ -25,7 +25,9 @@ public class Rouge
      */
     public Rouge(String name)
     {
+
         super(8000, 750, name, 750, 15);
+        rand = new Random();
     }
 
 

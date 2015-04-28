@@ -1,5 +1,6 @@
 package cs2114.puzzlerpg;
 
+import android.widget.Button;
 import android.widget.ImageButton;
 import cs2114.puzzlerpg.puzzle.GemCellType;
 import sofia.graphics.Color;
@@ -35,14 +36,12 @@ public class BattleScreen
     private RectangleShape   playerShape;
     private RectangleShape   monsterShape;
     private RPGController    ctrl;
-    private TextView         charName;
     private TextView         charHealth;
-    private TextView         monsterTurns;
     private ShapeView        player;
     private ShapeView        monster;
     private TextView         monsterHealth;
-    private ImageButton      special;
-    private TextView         specialText;
+    private Button           special;
+    private Location         firstClick;
 
 
     // ----------------------------------------------------------
@@ -51,24 +50,30 @@ public class BattleScreen
      */
     public void initialize()
     {
+
+        // Get player class and Name information from intent
         Intent intent = getIntent();
         createRPGController(intent.getExtras().getString("name"), intent
             .getExtras().getString("class"));
-        charName.setText(ctrl.getPlayer().getName());
-        charHealth.setText(ctrl.getPlayer().getHealth() + "/"
-            + ctrl.getPlayer().getMaxHealth());
 
         puzzle = new PuzzleGrid(GRID_SIZE);
-        puzzle.addObserver(this);
-        ctrl.addObserver(this);
+
         this.length =
             (Math.min(shapeView.getHeight(), shapeView.getWidth()) / GRID_SIZE);
         this.gem = new GemShape[GRID_SIZE][GRID_SIZE];
-        setupScreen();
+        setupPuzzle();
+        setUpRPGArea();
+        puzzle.addObserver(this);
+        ctrl.addObserver(this);
 
     }
 
 
+    /**
+     * Creates the rpg controller for the screen determines the class of
+     * selected character and creates a new player of that class and passes it
+     * into the rpg controller
+     */
     private void createRPGController(String name, String classType)
     {
         if (classType.equals("Warrior"))
@@ -87,7 +92,10 @@ public class BattleScreen
     }
 
 
-    private void setupScreen()
+    /**
+     * Sets up the puzzle grid
+     */
+    private void setupPuzzle()
     {
 
         for (int i = 0; i < GRID_SIZE; i++)
@@ -109,28 +117,40 @@ public class BattleScreen
             }
         }
 
-        monsterHealth.setText(ctrl.getMonster().attackTurns() + "/"
-            + ctrl.getMonster().getHealth());
-        player.bringToFront();
-        monster.bringToFront();
+    }
 
+
+    /**
+     * Sets the beginning character and monster fields including the image of
+     * each, the health of each, and the turns of the monster
+     */
+    private void setUpRPGArea()
+    {
+
+        // set up monster health and turns bar
+        monsterHealth.setText(ctrl.getMonster().attackTurns() + " turns" + "/"
+            + ctrl.getMonster().getHealth() + "hp");
+        special.setText(ctrl.getPlayer().specialTurnsLeft() + "left");
+        // set up character health
+        charHealth.setText(ctrl.getPlayer().getHealth() + "/"
+            + ctrl.getPlayer().getMaxHealth());
+        // create player shape
         playerShape =
             new RectangleShape(0, 0, player.getWidth(), player.getHeight());
-
         playerShape.setImage(ctrl.getImage());
+        // create monster shape
         monsterShape =
-            new RectangleShape(0, 0, player.getWidth(), player.getHeight());
+            new RectangleShape(0, 0, monster.getWidth(), monster.getHeight());
         monsterShape.setImage(ctrl.getMonster().getImage());
-
+        // add monster and player to screen
         player.add(playerShape);
         monster.add(monsterShape);
-
     }
 
 
     // ----------------------------------------------------------
     /**
-     * Place a description of your method here.
+     * Process a touch being completed
      *
      * @param x
      *            the x pixel location clicked
@@ -160,10 +180,12 @@ public class BattleScreen
 
 
     /**
-     * Place a description of your method here.
+     * Gets the gem under the click and deletes adjacents of the same type
      *
      * @param x
+     *            the pixel location of x
      * @param y
+     *            the pizel location of y
      */
     public void processTouch(float x, float y)
     {
@@ -175,37 +197,63 @@ public class BattleScreen
             int yValue = getValue(y);
             int xValue = getValue(x);
 
-            GemCellType type = puzzle.getType(new Location(xValue, yValue));
-            ctrl.update(puzzle.remove(new Location(xValue, yValue)), type);
+            if (firstClick == null)
+            {
+                firstClick = new Location(xValue, yValue);
+            }
+            else
+            {
+                GemCellType temp = puzzle.getType(firstClick);
+                GemCellType type = puzzle.getType(new Location(xValue, yValue));
+                if (Location.isAdjacent(
+                    firstClick,
+                    new Location(xValue, yValue)))
+                {
+                    puzzle.switchGems(firstClick, new Location(xValue, yValue));
+                    if (puzzle.countAdjacent(firstClick) >= 3)
+                    {
+                        ctrl.update(puzzle.remove(firstClick), type);
+                    }
+                    if (puzzle.countAdjacent(new Location(xValue, yValue)) >= 3)
+                    {
+                        ctrl.update(
+                            puzzle.remove(new Location(xValue, yValue)),
+                            temp);
+                    }
+                    firstClick = null;
+                }
+            }
         }
 
     }
 
 
     /**
-     * Update view for monster.
+     * Update the screen when the rpg makes changes
      *
      * @param control
      *            The rpg controller.
      */
     public void changeWasObserved(RPGController control)
     {
-
+        // Update character health
         charHealth.setText(ctrl.getPlayer().getHealth() + "/"
             + ctrl.getPlayer().getMaxHealth());
+        // update monster image in case monster has changed
         monsterShape.setImage(ctrl.getMonster().getImage());
-        monsterHealth.setText(ctrl.getMonster().attackTurns() + "/"
-            + ctrl.getMonster().getHealth());
-
-        if (ctrl.getPlayer().getCounter() <= ctrl.getPlayer().getTurns())
+        // update monster health and turns
+        monsterHealth.setText(ctrl.getMonster().attackTurns() + " turns" + "/"
+            + ctrl.getMonster().getHealth() + "hp");
+        // determine if special can be activated yet and sets text of bottom
+        if (ctrl.getPlayer().specialTurnsLeft() > 0)
         {
-            specialText.setText("Activate Special");
+            special.setText(ctrl.getPlayer().specialTurnsLeft() + "left");
         }
         else
         {
-            specialText.setText(ctrl.getPlayer().getTurns()
-                - ctrl.getPlayer().getCounter() + "left");
+            special.setText("Special");
         }
+
     }
 
 
@@ -221,16 +269,16 @@ public class BattleScreen
 
     // ----------------------------------------------------------
     /**
-     * updates the screen
+     * updates the screen when puzzle changes
      *
-     * @param puzzle
+     * @param grid
      *            the puzzle
      */
-    public void changeWasObserved(PuzzleGrid puzzle)
+    public void changeWasObserved(PuzzleGrid grid)
     {
-        for (int i = 0; i < puzzle.size(); i++)
+        for (int i = 0; i < grid.size(); i++)
         {
-            for (int j = 0; j < puzzle.size(); j++)
+            for (int j = 0; j < grid.size(); j++)
             {
 
                 // GemShape oldGem = gem[i][j];
@@ -242,8 +290,7 @@ public class BattleScreen
 
                 // }
 
-                gem[i][j].setImage(puzzle.getType(new Location(i, j))
-                    .getImage());
+                gem[i][j].setImage(grid.getType(new Location(i, j)).getImage());
 
             }
 

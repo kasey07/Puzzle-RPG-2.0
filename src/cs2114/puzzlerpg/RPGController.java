@@ -128,7 +128,7 @@ public class RPGController
             4,
             "Water Dragon",
             4,
-            "waterDragon.png"));
+            "waterdragon.png"));
 
         monsters.push(new Monsters(
             10000,
@@ -137,7 +137,7 @@ public class RPGController
             2,
             "Fire Dragon",
             4,
-            "fireDragon.png"));
+            "firedragon.png"));
 
         monsters.push(new Monsters(
             1000,
@@ -146,7 +146,7 @@ public class RPGController
             1,
             "Troll",
             5,
-            "Troll.png"));
+            "troll.png"));
 
     }
 
@@ -185,6 +185,14 @@ public class RPGController
     public void update(int combo, GemCellType typeRemoved)
     {
         Monsters mon = monsters.peek();
+        mon.setAttackTurns(mon.attackTurns() - 1);
+
+        if (mon.attackTurns() == 0)
+        {
+            mainChar.reduceHealth(mon.attack());
+            mon.setAttackTurns(mon.getDefaultTurns());
+        }
+
         mainChar.setCounter(mainChar.getCounter() + 1);
         if (typeRemoved.equals(GemCellType.HEAL))
         {
@@ -207,13 +215,7 @@ public class RPGController
             }
 
         }
-        mon.setAttackTurns(mon.attackTurns() - 1);
 
-        if (mon.attackTurns() == 0)
-        {
-            mainChar.reduceHealth(mon.attack());
-            mon.setAttackTurns(mon.getDefaultTurns());
-        }
         notifyObservers();
     }
 
@@ -234,7 +236,7 @@ public class RPGController
             ((Mage)mainChar).specialAbility();
 
         }
-        else
+        if (mainChar instanceof Rouge)
         {
             monsters.peek().setAttackTurns(
                 ((Rouge)mainChar).specialAbility()
@@ -242,5 +244,4 @@ public class RPGController
 
         }
     }
-
 }

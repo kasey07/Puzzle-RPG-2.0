@@ -75,7 +75,7 @@ public class MonstersTest
     public void testReduceHealth()
     {
         mon.reduceHealth(0);
-        assertEquals(10000, mon.getHealth());
+        assertEquals(40000, mon.getHealth());
 
     }
 

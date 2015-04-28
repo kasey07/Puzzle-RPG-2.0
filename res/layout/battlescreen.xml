@@ -14,22 +14,15 @@
         android:layout_alignParentRight="true" >
 
         <sofia.graphics.ShapeView
-            android:id="@+id/monster"
-            android:layout_width="wrap_content"
+            android:id="@+id/player"
             android:layout_height="100dp"
+            android:layout_width="50dp"
             android:layout_weight="0.55" />
 
-        <ImageButton
-            android:id="@+id/special"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.55"
-            android:src="@android:drawable/btn_star" />
-
         <sofia.graphics.ShapeView
-            android:id="@+id/player"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:id="@+id/monster"
+            android:layout_height="100dp"
+            android:layout_width="100dp"
             android:layout_weight="0.62" />
     </LinearLayout>
 
@@ -67,14 +60,13 @@
         android:layout_below="@+id/shapeView"
         android:text="health" />
 
-    <TextView
-        android:id="@+id/specialText"
+    <Button
+        android:id="@+id/special"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/charHealth"
-        android:layout_alignBottom="@+id/charHealth"
+        android:layout_below="@+id/shapeView"
         android:layout_centerHorizontal="true"
-        android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_weight="0.55"
+        android:text="Special" />
 
 </RelativeLayout>
