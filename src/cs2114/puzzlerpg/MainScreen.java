@@ -15,7 +15,7 @@ import android.view.MenuItem;
 
 // -------------------------------------------------------------------------
 /**
- * Main Menu of Puzzle RPG 2.0
+ * Main Menu of Puzzle RPG 2.0. Allows for character class selection and naming.
  *
  * @author Kasey Johnson
  * @version Apr 22, 2015
@@ -91,4 +91,5 @@ public class MainScreen
         startActivity(intent);
 
     }
+
 }

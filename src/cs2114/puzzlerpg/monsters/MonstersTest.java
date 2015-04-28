@@ -16,7 +16,9 @@ public class MonstersTest
 
     private Monsters mon;
 
-
+    /**
+     * Set up the variables for testing Monsters class
+     */
     public void setUp()
     {
         mon =

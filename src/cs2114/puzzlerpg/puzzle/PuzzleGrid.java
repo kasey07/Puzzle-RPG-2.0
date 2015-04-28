@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 // -------------------------------------------------------------------------
 /**
- * Write a one-sentence summary of your class here. Follow it with additional
- * details about its purpose, what abstraction it represents, and how to use it.
+ * The puzzle grid keeps track of the puzzle board and the puzzle pieces of the
+ * game
  *
  * @author Kasey Johnson
  * @version Mar 29, 2015
@@ -72,8 +72,7 @@ public class PuzzleGrid
             case 3:
                 return GemCellType.HEAL;
             default:
-                // This should never happen, but I don't
-                // care enough to use exceptions.
+                // This should never happen
                 return null;
         }
 

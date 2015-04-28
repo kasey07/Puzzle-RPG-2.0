@@ -18,10 +18,15 @@ import sofia.graphics.ShapeView;
 
 // -------------------------------------------------------------------------
 /**
- * Battle Screen of the Puzzle-RPG.
+ * Battle Screen of the Puzzle-RPG. This game is played my clicking on a gem and
+ * then clicking an adjacenet gem. 3 or more in a row allows player to attack.
+ * Each gem is a different element with the hearts being heal. After a certain
+ * number of turns the player can activate its special ability. There are a
+ * total of 9 monsters to fight with each monster being harder than the
+ * perivious. New gems enter the screen from the left side Credits go to
+ * OpenGameArt and the artist that contributed to the sprites used in the game.
  *
  * @author Kasey Johnson
- * @author
  * @version Mar 29, 2015
  */
 public class BattleScreen
@@ -53,8 +58,16 @@ public class BattleScreen
 
         // Get player class and Name information from intent
         Intent intent = getIntent();
-        createRPGController(intent.getExtras().getString("name"), intent
-            .getExtras().getString("class"));
+        if (intent.getExtras() != null)
+        {
+            createRPGController(intent.getExtras().getString("name"), intent
+                .getExtras().getString("class"));
+        }
+        else
+        {
+            createRPGController("Player", "Warrior");
+            // Default values if intent in null
+        }
 
         puzzle = new PuzzleGrid(GRID_SIZE);
 
@@ -185,7 +198,7 @@ public class BattleScreen
      * @param x
      *            the pixel location of x
      * @param y
-     *            the pizel location of y
+     *            the pixel location of y
      */
     public void processTouch(float x, float y)
     {
@@ -281,20 +294,35 @@ public class BattleScreen
             for (int j = 0; j < grid.size(); j++)
             {
 
-                // GemShape oldGem = gem[i][j];
-                // if (oldGem.getType() != puzzle.getType(new Location(i, j)))
-                // {
-                // oldGem.animate(400).rotation(720).play();
-                // gem[i][j] = oldGem;
-                // shapeView.add(gem[i][j]);
-
-                // }
-
                 gem[i][j].setImage(grid.getType(new Location(i, j)).getImage());
 
             }
 
         }
+
+    }
+
+
+    /**
+     * Helper method for test
+     *
+     * @return the puzzlegrid
+     */
+    public PuzzleGrid getPuzzle()
+    {
+        return puzzle;
+
+    }
+
+
+    /**
+     * Helper method for test
+     *
+     * @return the ctrl
+     */
+    public RPGController getController()
+    {
+        return ctrl;
 
     }
 }

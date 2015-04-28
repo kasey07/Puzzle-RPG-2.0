@@ -11,7 +11,7 @@ import cs2114.puzzlerpg.playerclasses.*;
 
 // -------------------------------------------------------------------------
 /**
- * Control RPG elements of the game. Keeps track of monster
+ * Control RPG elements of the game. Keeps track of monster and character stats.
  *
  * @author Kasey Johnson
  * @version Apr 26, 2015
@@ -93,7 +93,7 @@ public class RPGController
             8,
             "water beast",
             6,
-            "waterbeast.gif"));
+            "bluebeast.gif"));
 
         monsters.push(new Monsters(
             20000,

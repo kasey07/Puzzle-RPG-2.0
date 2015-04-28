@@ -15,6 +15,9 @@ public class PuzzleGridTest
     private PuzzleGrid puzzle;
 
 
+    /**
+     * Set up for testing
+     */
     public void setUp()
     {
         puzzle = new PuzzleGrid(3);

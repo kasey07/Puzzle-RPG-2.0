@@ -2,8 +2,8 @@ package cs2114.puzzlerpg.puzzle;
 
 // -------------------------------------------------------------------------
 /**
- * Write a one-sentence summary of your class here. Follow it with additional
- * details about its purpose, what abstraction it represents, and how to use it.
+ * The four elements used in the game. Each element has  a weakness and an
+ * image associated with it
  *
  * @author Kasey Johnson
  * @version Apr 7, 2015

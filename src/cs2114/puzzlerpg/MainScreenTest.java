@@ -1,20 +1,25 @@
 package cs2114.puzzlerpg;
 
+import android.content.Intent;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import student.TestCase;
 
 /**
- *  Test class for MainScreen.
+ * Test class for MainScreen.
  *
- *  @author andrew
- *  @version Apr 27, 2015
+ * @author andrew
+ * @author Kasey Johnson
+ * @version Apr 27, 2015
  */
-public class MainScreenTest extends student.AndroidTestCase<MainScreen>
+public class MainScreenTest
+    extends student.AndroidTestCase<MainScreen>
 {
     private Spinner  characterClass;
     private EditText characterName;
-    private String   selected;
+    private Button   start;
+
 
     /**
      * Empty constructor, do nothing.
@@ -24,27 +29,32 @@ public class MainScreenTest extends student.AndroidTestCase<MainScreen>
         super(MainScreen.class);
     }
 
-    /**
-     * Initialize the test features.
-     */
-    public void setUp()
-    {
-        // Do nothing
-    }
 
     /**
      * Test the character spinner.
      */
     public void testCharacterSpinner()
     {
-        assertEquals("Warrior", selected.toString());
+        assertEquals("Warrior", characterClass.getSelectedItem().toString());
     }
+
 
     /**
      * Test the character name.
      */
     public void testCharacterName()
     {
-        assertEquals("", characterName.getText());
+
+        assertEquals("", characterName.getEditableText());
+    }
+
+
+    /**
+     * Test clicking Start
+     */
+    public void testStartClicked()
+    {
+        prepareForUpcomingActivity(Intent.ACTION_VIEW);
+        this.click(start);
     }
 }

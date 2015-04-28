@@ -19,11 +19,11 @@ public class GemShape
     /**
      * Create a new GemShape object.
      *
-     * @param left
-     * @param top
-     * @param right
-     * @param bottom
-     * @param type
+     * @param left the left pixel position
+     * @param top the top pixel position
+     * @param right the right pixel position
+     * @param bottom the bottom pixel position
+     * @param type the GemCellType of gemshape
      */
     public GemShape(
         float left,

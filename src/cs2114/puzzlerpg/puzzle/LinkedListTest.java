@@ -23,6 +23,9 @@ public class LinkedListTest
     }
 
 
+    /**
+     * set up for testing
+     */
     public void setUp()
     {
         list = new LinkedList<String>();
